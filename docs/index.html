@@ -4,6 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrismIQ | Behavior & Perception Quizzes</title>
+
+    <!-- Standard OpenGraph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prismiq.app/">
+    <meta property="og:title" content="PrismIQ | Behavioral & Perception Quizzes">
+    <meta property="og:description" content="Evaluate your true risk-taking architecture across career, wealth, social, and adventure domains.">
+    <meta property="og:image" content="https://prismiq.app/og-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter / X Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://prismiq.app/">
+    <meta name="twitter:title" content="PrismIQ | Behavioral & Perception Quizzes">
+    <meta name="twitter:description" content="Evaluate your true risk-taking architecture across career, wealth, social, and adventure domains.">
+    <meta name="twitter:image" content="https://prismiq.app/og-preview.png">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -212,6 +229,28 @@
     <footer class="w-full max-w-3xl mx-auto p-6 text-center text-xs text-slate-600">
         PrismIQ • Saved locally in your browser cache. Zero server tracking.
     </footer>
+
+    <!-- Floating Feedback Trigger Button -->
+    <div class="fixed bottom-4 right-4 z-50">
+        <button onclick="openFeedback()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-indigo-400/30 transition-all flex items-center gap-2">
+            💬 Give Feedback
+        </button>
+    </div>
+
+    <!-- Feedback Modal Window -->
+    <div id="feedback-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-sm w-full space-y-4 shadow-2xl">
+            <h3 class="text-lg font-bold text-white">Send Quiz Feedback</h3>
+            <p class="text-xs text-slate-400">Found a bug or have a feature idea? Let me know!</p>
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="space-y-3">
+                <textarea name="message" required rows="3" placeholder="What did you think of the quiz results?" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+                <div class="flex gap-2 justify-end">
+                    <button type="button" onclick="closeFeedback()" class="px-3 py-1.5 text-xs text-slate-400 hover:text-white">Cancel</button>
+                    <button type="submit" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <!-- JavaScript Application Logic -->
     <script>
@@ -663,6 +702,10 @@
                 alert("Share text copied to clipboard!");
             });
         }
+
+        // Feedback Modal Handlers
+        function openFeedback() { document.getElementById('feedback-modal').classList.remove('hidden'); }
+        function closeFeedback() { document.getElementById('feedback-modal').classList.add('hidden'); }
     </script>
 </body>
 </html>
