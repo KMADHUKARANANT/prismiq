@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrismIQ | Behavior & Perception Quizzes</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="w-full max-w-3xl mx-auto p-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-tight text-indigo-400 cursor-pointer" onclick="goHome()">prism<span class="text-white">IQ</span></h1>
+        <div class="flex items-center gap-2">
+            <button onclick="clearHistory()" class="text-[10px] text-slate-500 hover:text-red-400 uppercase tracking-widest bg-slate-900 border border-slate-800 px-2.5 py-1 rounded-full transition-colors">Reset History</button>
+            <span class="text-xs text-slate-500 uppercase tracking-widest bg-slate-900 border border-slate-800 px-3 py-1 rounded-full">Zero Data Stored</span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="w-full max-w-2xl mx-auto px-6 flex-grow flex items-center justify-center py-6">
+
+        <!-- VIEW 1: HOME DASHBOARD -->
+        <div id="home-screen" class="w-full space-y-8">
+            <div class="text-center space-y-3">
+                <div class="inline-block p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl text-indigo-400 text-sm">
+                    🧠 Behavioral & Perception Hub
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Choose Your Prism Audit</h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-md mx-auto">
+                    Select a domain below to evaluate your true risk-taking architecture.
+                </p>
+            </div>
+
+            <!-- Quiz Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div onclick="startQuiz('career')" class="bg-slate-900/60 border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900 group space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl">💼</span>
+                        <span class="text-xs text-indigo-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Career & Strategic Risk</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Evaluate your willingness to pivot, chase equity, and embrace professional uncertainty.</p>
+                </div>
+
+                <div onclick="startQuiz('financial')" class="bg-slate-900/60 border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900 group space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl">📈</span>
+                        <span class="text-xs text-emerald-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Financial & Wealth Risk</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Discover your appetite for high-volatility assets, investments, and monetary bets.</p>
+                </div>
+
+                <div onclick="startQuiz('social')" class="bg-slate-900/60 border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900 group space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl">🗣️</span>
+                        <span class="text-xs text-purple-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Social & Conformity Risk</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Measure how comfortable you are with public friction, controversy, and standing out.</p>
+                </div>
+
+                <div onclick="startQuiz('adventure')" class="bg-slate-900/60 border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900 group space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl">⚡</span>
+                        <span class="text-xs text-amber-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Adventure & Physical Risk</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Check your threshold for physical thrills, outdoor exposure, and novelty-seeking.</p>
+                </div>
+            </div>
+
+            <!-- USER PROFILE HISTORY SECTION (LOCAL PERSISTENCE) -->
+            <div id="history-section" class="space-y-4 pt-4 border-t border-slate-900">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-indigo-400">Your Saved Profile DNA</h3>
+                    <span id="completed-count" class="text-xs text-slate-500">0/4 Completed</span>
+                </div>
+
+                <!-- Aggregated Score Bar -->
+                <div class="bg-slate-900/40 border border-slate-800 p-4 rounded-2xl space-y-2">
+                    <div class="flex justify-between text-xs font-medium">
+                        <span class="text-slate-300">Composite Prism Propensity</span>
+                        <span id="composite-score" class="text-indigo-400">0%</span>
+                    </div>
+                    <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                        <div id="composite-bar" class="bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 h-full transition-all duration-700" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <!-- History Cards Grid -->
+                <div id="history-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+            </div>
+
+            <!-- Persona Preview Showcase Section -->
+            <div class="space-y-4 pt-4 border-t border-slate-900">
+                <div class="text-center">
+                    <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-500">Peak Domain Archetypes</h3>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="bg-slate-900/30 border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
+                        <div class="text-lg">💼</div>
+                        <div class="text-xs font-bold text-indigo-300">Startup Gambit</div>
+                        <div class="text-[10px] text-slate-500">Career Domain</div>
+                    </div>
+                    <div class="bg-slate-900/30 border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
+                        <div class="text-lg">📈</div>
+                        <div class="text-xs font-bold text-emerald-300">High-Stakes Bull</div>
+                        <div class="text-[10px] text-slate-500">Wealth Domain</div>
+                    </div>
+                    <div class="bg-slate-900/30 border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
+                        <div class="text-lg">🗣️</div>
+                        <div class="text-xs font-bold text-purple-300">Social Alchemist</div>
+                        <div class="text-[10px] text-slate-500">Social Domain</div>
+                    </div>
+                    <div class="bg-slate-900/30 border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
+                        <div class="text-lg">⚡</div>
+                        <div class="text-xs font-bold text-amber-300">Adrenaline Surfer</div>
+                        <div class="text-[10px] text-slate-500">Adventure Domain</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: QUIZ SCREEN -->
+        <div id="quiz-screen" class="hidden w-full space-y-6">
+            <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
+                <div id="progress-bar" class="bg-indigo-500 h-full transition-all duration-300" style="width: 25%;"></div>
+            </div>
+            
+            <div class="flex justify-between text-xs text-slate-400">
+                <span id="question-counter">Question 1 of 4</span>
+                <span id="quiz-category-tag" class="text-indigo-400 font-medium uppercase tracking-wider">Category</span>
+            </div>
+
+            <div class="bg-slate-900/50 border border-slate-800/80 p-6 sm:p-8 rounded-2xl space-y-6">
+                <h3 id="question-text" class="text-lg sm:text-xl font-medium text-slate-200 leading-snug">
+                    Loading question...
+                </h3>
+                <div id="options-container" class="space-y-3"></div>
+            </div>
+            <button onclick="goHome()" class="text-xs text-slate-500 hover:text-slate-300 transition-colors">← Back to Dashboard</button>
+        </div>
+
+        <!-- VIEW 3: RESULTS SCREEN -->
+        <div id="result-screen" class="hidden w-full space-y-6 py-4">
+            
+            <!-- Capture Card -->
+            <div id="capture-card" class="bg-gradient-to-br from-slate-900 to-indigo-950 border border-indigo-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p id="result-domain-label" class="text-xs text-indigo-400 uppercase tracking-widest font-semibold">Career Risk Archetype</p>
+                        <h2 id="result-title" class="text-2xl sm:text-3xl font-black text-white mt-1">The Calculated Climber</h2>
+                    </div>
+                    <div class="bg-indigo-500/20 border border-indigo-500/40 px-3 py-1.5 rounded-xl text-indigo-300 text-xs font-bold tracking-wider">
+                        prismIQ
+                    </div>
+                </div>
+
+                <p id="result-description" class="text-slate-300 text-sm leading-relaxed">
+                    Description goes here...
+                </p>
+
+                <div class="border-t border-slate-800/80 pt-4 space-y-3">
+                    <div class="flex justify-between text-xs font-medium text-slate-400">
+                        <span>Domain Propensity Score</span>
+                        <span id="score-metric" class="text-indigo-400">Score: 12/20</span>
+                    </div>
+                    <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
+                        <div id="result-meter" class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 70%;"></div>
+                    </div>
+                </div>
+
+                <div class="text-[10px] text-slate-500 text-right pt-2">
+                    Verified on prismiq.app
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="downloadCardNative()" class="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-center text-sm font-medium">
+                    📸 Download Aura Card
+                </button>
+                <button onclick="goHome()" class="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold rounded-xl transition-all text-center text-sm font-medium">
+                    🏠 Hub
+                </button>
+            </div>
+
+            <!-- Social Share Bar -->
+            <div class="bg-slate-900/40 border border-slate-800/80 p-4 rounded-2xl space-y-3 text-center">
+                <p class="text-xs text-slate-400 font-medium">Share your archetype with your network:</p>
+                <div class="flex justify-center gap-2">
+                    <button onclick="shareToLinkedIn()" class="px-4 py-2 bg-[#0a66c2] hover:bg-[#095196] text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+                        LinkedIn
+                    </button>
+                    <button onclick="shareToTwitter()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg transition-colors border border-slate-700 flex items-center gap-1.5">
+                        X / Twitter
+                    </button>
+                    <button onclick="copyShareText()" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold rounded-lg transition-colors border border-slate-800">
+                        📋 Copy Text
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-3xl mx-auto p-6 text-center text-xs text-slate-600">
+        PrismIQ • Saved locally in your browser cache. Zero server tracking.
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        const quizzes = {
+            career: {
+                name: "Career & Strategic Risk",
+                questions: [
+                    {
+                        question: "You’re 3 years into a stable corporate job. An early-stage startup offers you a high-equity, high-risk role with a pay cut. You:",
+                        options: [
+                            { text: "Politely decline. A steady paycheck and clear path are non-negotiable.", points: 1 },
+                            { text: "Negotiate to keep a base salary while taking a smaller piece of equity.", points: 3 },
+                            { text: "Quit the next day. Life’s too short to build someone else's dream safely.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Your team lead leaves unexpectedly, opening up a senior position you feel slightly underqualified for. Do you:",
+                        options: [
+                            { text: "Keep your head down and let someone more experienced take it.", points: 1 },
+                            { text: "Apply after consulting a mentor to check if you're ready.", points: 3 },
+                            { text: "Step up immediately and pitch yourself as the ideal replacement.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "You have an idea to completely automate your team's workflow, but it risks disrupting current management processes if it fails. You:",
+                        options: [
+                            { text: "Stick to the legacy process. If it isn't broken, don't fix it.", points: 1 },
+                            { text: "Test it quietly on a small sub-project first to prove the concept.", points: 3 },
+                            { text: "Roll it out team-wide overnight and let results speak for themselves.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "When considering your professional trajectory over the next decade, your biggest fear is:",
+                        options: [
+                            { text: "Experiencing sudden unemployment or unstable income streams.", points: 1 },
+                            { text: "Stagnating in a comfortable but mediocre role that lacks growth.", points: 3 },
+                            { text: "Never taking the big swing to build something truly independent.", points: 5 }
+                        ]
+                    }
+                ],
+                results: [
+                    { max: 8, title: "The Career Fortress", desc: "You prioritize extreme job stability, predictability, and a protected career trajectory above all else." },
+                    { max: 14, title: "The Calculated Climber", desc: "You calculate your professional steps carefully, taking smart risks only when the data and upside support it." },
+                    { max: 20, title: "The Startup Gambit", desc: "You thrive on professional chaos and high-stakes pivots, treating career leaps as essential for growth." }
+                ]
+            },
+            financial: {
+                name: "Financial & Wealth Risk",
+                questions: [
+                    {
+                        question: "You have some extra savings after paying off bills. How do you deploy it?",
+                        options: [
+                            { text: "High-yield savings accounts, government bonds, or index funds. Zero drama.", points: 1 },
+                            { text: "A balanced mix of blue-chip stocks and steady growth assets.", points: 3 },
+                            { text: "All-in on a high-volatility bet (speculative tech play, crypto, or angel investing).", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "A high-risk asset you invested in drops 30% in a single week. Your reaction is to:",
+                        options: [
+                            { text: "Panic-sell immediately to cut your losses and protect remaining capital.", points: 1 },
+                            { text: "Hold tight and wait to see if the market corrects itself over time.", points: 3 },
+                            { text: "Buy more at the dip—volatility is just an opportunity.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "A friend pitches an unproven, early-stage business idea looking for seed capital. You:",
+                        options: [
+                            { text: "Politely pass. Mixing friendship with high-risk capital is a bad idea.", points: 1 },
+                            { text: "Invest a small, disposable amount that won't hurt if it goes to zero.", points: 3 },
+                            { text: "Back them heavily—high risk yields legendary returns.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How do you handle budgeting and emergency financial buffers?",
+                        options: [
+                            { text: "I maintain a strict 6-to-12 month emergency fund in cash equivalents.", points: 1 },
+                            { text: "I keep a modest buffer while letting the rest compound in investments.", points: 3 },
+                            { text: "Emergency funds are dead capital; I stay fully deployed in active positions.", points: 5 }
+                        ]
+                    }
+                ],
+                results: [
+                    { max: 8, title: "The Wealth Vault", desc: "Capital preservation is your core religion. You build heavy safety buffers to insulate against economic turbulence." },
+                    { max: 14, title: "The Balanced Allocator", desc: "You diversify prudently, balancing sensible growth vehicles with controlled exposure to market risk." },
+                    { max: 20, title: "The High-Stakes Bull", desc: "You view capital as ammunition for high-reward bets without flinching at financial turbulence." }
+                ]
+            },
+            social: {
+                name: "Social & Conformity Risk",
+                questions: [
+                    {
+                        question: "You're at a dinner party where someone expresses an opinion on a controversial topic you strongly disagree with. You:",
+                        options: [
+                            { text: "Nod politely and change the subject. Keeping the peace matters more.", points: 1 },
+                            { text: "Wait for a quiet moment to pull them aside and offer a calm alternative view.", points: 3 },
+                            { text: "Call it out immediately across the table and spark a passionate public debate.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How comfortable are you sharing an unconventional personal belief or creative project publicly online?",
+                        options: [
+                            { text: "Very uncomfortable. I prefer to keep my opinions private to avoid judgment.", points: 1 },
+                            { text: "Cautious. I share things only with a curated circle of close friends.", points: 3 },
+                            { text: "Completely comfortable. Let people judge—authenticity beats approval.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "You notice a group consensus forming at work that you know is fundamentally flawed. Do you:",
+                        options: [
+                            { text: "Stay quiet and let the group proceed to avoid rocking the boat.", points: 1 },
+                            { text: "Voice your concerns privately to a supervisor or close colleague.", points: 3 },
+                            { text: "Openly challenge the consensus in front of the entire team.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "When attending a large networking event where you don't know anyone, your approach is:",
+                        options: [
+                            { text: "Stick close to anyone you already recognize or look at your phone.", points: 1 },
+                            { text: "Approach small groups or friendly-looking individuals cautiously.", points: 3 },
+                            { text: "Walk straight into the center of the room and introduce yourself loudly to strangers.", points: 5 }
+                        ]
+                    }
+                ],
+                results: [
+                    { max: 8, title: "The Diplomat", desc: "You value social harmony and safety, choosing your battles carefully to avoid unnecessary public friction." },
+                    { max: 14, title: "The Nuanced Voice", desc: "You are willing to express alternative views when necessary, but always maintain a polished social filter." },
+                    { max: 20, title: "The Social Alchemist", desc: "You embrace controversy and standing out, completely unfazed by public pushback or social friction." }
+                ]
+            },
+            adventure: {
+                name: "Adventure & Physical Risk",
+                questions: [
+                    {
+                        question: "Your friends invite you on a weekend trip involving extreme activities you've never tried (like backcountry skiing).",
+                        options: [
+                            { text: "Opt out or stay at the lodge with a book. No need to test gravity.", points: 1 },
+                            { text: "Do it, but only after checking safety gear, reviews, and guides thoroughly.", points: 3 },
+                            { text: "First one off the cliff. Let’s see what happens.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "When traveling to a new foreign country, your preferred style is:",
+                        options: [
+                            { text: "A fully booked resort tour with strict itineraries and verified safety ratings.", points: 1 },
+                            { text: "Booking a flight and hotel, then figuring out daily plans on the ground.", points: 3 },
+                            { text: "Backpacking with a one-way ticket and zero fixed lodging plans.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "You are offered a chance to try a high-speed vehicle or extreme motorsport track day. You:",
+                        options: [
+                            { text: "Watch safely from the grandstands. Too much physical vulnerability.", points: 1 },
+                            { text: "Take a few cautious laps well within speed limits.", points: 3 },
+                            { text: "Push the car to its absolute limits right out of the gate.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How do you approach health routines or medical advice regarding new treatments?",
+                        options: [
+                            { text: "Extremely conservative. I stick strictly to proven, long-standing practices.", points: 1 },
+                            { text: "Open-minded, provided there is solid clinical backing and data.", points: 3 },
+                            { text: "Eager to experiment with cutting-edge health biohacking and novel therapies.", points: 5 }
+                        ]
+                    }
+                ],
+                results: [
+                    { max: 8, title: "The Comfort Zone Guardian", desc: "Physical safety and predictable environments are your baseline. You see little value in unnecessary danger." },
+                    { max: 14, title: "The Prepared Explorer", desc: "You love novelty and adventure, but you always pack a safety harness and map out contingencies." },
+                    { max: 20, title: "The Adrenaline Surfer", desc: "You chase the thrill of the unknown, trusting your reflexes and adaptability when situations get intense." }
+                ]
+            }
+        };
+
+        let currentQuizKey = '';
+        let currentQuestionIndex = 0;
+        let totalScore = 0;
+        let lastResultTitle = '';
+
+        // Initialize App & Load Saved Local Storage History
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHistoryUI();
+        });
+
+        function getStoredHistory() {
+            try {
+                return JSON.parse(localStorage.getItem('prismiq_user_history')) || {};
+            } catch(e) {
+                return {};
+            }
+        }
+
+        function saveQuizToHistory(quizKey, score, title, desc, maxScore) {
+            let history = getStoredHistory();
+            history[quizKey] = {
+                score: score,
+                maxScore: maxScore,
+                title: title,
+                desc: desc,
+                timestamp: new Date().toLocaleDateString()
+            };
+            localStorage.setItem('prismiq_user_history', JSON.stringify(history));
+            renderHistoryUI();
+        }
+
+        function clearHistory() {
+            if(confirm("Clear all your saved quiz results from this browser?")) {
+                localStorage.removeItem('prismiq_user_history');
+                renderHistoryUI();
+            }
+        }
+
+        function renderHistoryUI() {
+            let history = getStoredHistory();
+            let keys = Object.keys(history);
+            let section = document.getElementById('history-section');
+            let grid = document.getElementById('history-grid');
+
+            // Always unhide history section container
+            section.classList.remove('hidden');
+
+            // Empty state placeholder
+            if (keys.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-1 sm:col-span-2 bg-slate-900/30 border border-slate-800/60 p-4 rounded-xl text-center text-xs text-slate-500">
+                        No saved quizzes yet. Complete any audit above to record your profile!
+                    </div>`;
+                document.getElementById('completed-count').innerText = "0/4 Completed";
+                document.getElementById('composite-score').innerText = "0% Risk Appetite";
+                document.getElementById('composite-bar').style.width = '0%';
+                return;
+            }
+
+            grid.innerHTML = '';
+
+            let totalAchievedScore = 0;
+            let totalPossibleScore = 0;
+
+            keys.forEach(k => {
+                let item = history[k];
+                let catName = quizzes[k] ? quizzes[k].name : k;
+                let pct = Math.round((item.score / item.maxScore) * 100);
+
+                totalAchievedScore += item.score;
+                totalPossibleScore += item.maxScore;
+
+                let card = document.createElement('div');
+                card.className = "bg-slate-900/60 border border-slate-800 p-4 rounded-xl space-y-2 cursor-pointer hover:border-indigo-500/50 transition-colors";
+                card.onclick = () => {
+                    currentQuizKey = k;
+                    totalScore = item.score;
+                    lastResultTitle = item.title;
+                    showResults(true);
+                };
+
+                card.innerHTML = `
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="text-indigo-400 font-semibold uppercase tracking-wider">${catName}</span>
+                        <span class="text-slate-500 text-[10px]">${item.timestamp}</span>
+                    </div>
+                    <div class="text-sm font-bold text-white">${item.title}</div>
+                    <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-800/60 pt-2">
+                        <span>Score: ${item.score}/${item.maxScore}</span>
+                        <span class="text-indigo-300 font-semibold">${pct}% Propensity</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Update Composite Metrics
+            let totalCatCount = Object.keys(quizzes).length;
+            document.getElementById('completed-count').innerText = `${keys.length}/${totalCatCount} Completed`;
+            let compositePct = Math.round((totalAchievedScore / totalPossibleScore) * 100);
+            document.getElementById('composite-score').innerText = `${compositePct}% Risk Appetite`;
+            document.getElementById('composite-bar').style.width = compositePct + '%';
+        }
+
+        function goHome() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('home-screen').classList.remove('hidden');
+            
+            currentQuestionIndex = 0;
+            totalScore = 0;
+            
+            renderHistoryUI();
+        }
+
+        function startQuiz(quizKey) {
+            if(!quizzes[quizKey]) return;
+            currentQuizKey = quizKey;
+            currentQuestionIndex = 0;
+            totalScore = 0;
+
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            
+            document.getElementById('quiz-category-tag').innerText = quizzes[quizKey].name;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            let quiz = quizzes[currentQuizKey];
+            let q = quiz.questions[currentQuestionIndex];
+            
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('question-counter').innerText = `Question ${currentQuestionIndex + 1} of ${quiz.questions.length}`;
+            
+            let progressPercent = ((currentQuestionIndex + 1) / quiz.questions.length) * 100;
+            document.getElementById('progress-bar').style.width = progressPercent + '%';
+
+            let optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt) => {
+                let btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-indigo-500 hover:bg-indigo-950/20 text-slate-300 hover:text-white transition-all duration-150 text-sm sm:text-base font-normal flex items-center justify-between group";
+                btn.innerHTML = `<span>${opt.text}</span> <span class="text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>`;
+                btn.onclick = () => selectAnswer(opt.points);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(points) {
+            totalScore += points;
+            currentQuestionIndex++;
+
+            let quiz = quizzes[currentQuizKey];
+            if (currentQuestionIndex < quiz.questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults(isViewingSaved = false) {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            let quiz = quizzes[currentQuizKey];
+            let matchedResult = quiz.results[0];
+
+            for (let r of quiz.results) {
+                if (totalScore <= r.max) {
+                    matchedResult = r;
+                    break;
+                }
+            }
+
+            lastResultTitle = matchedResult.title;
+            let maxPossibleScore = quiz.questions.length * 5;
+            let meterWidth = Math.min(Math.max((totalScore / maxPossibleScore) * 100, 15), 100);
+
+            document.getElementById('result-domain-label').innerText = quiz.name + " Archetype";
+            document.getElementById('result-title').innerText = matchedResult.title;
+            document.getElementById('result-description').innerText = matchedResult.desc;
+            document.getElementById('score-metric').innerText = `Score: ${totalScore}/${maxPossibleScore}`;
+            document.getElementById('result-meter').style.width = meterWidth + '%';
+
+            // Auto-save to localStorage if user completed a quiz
+            if (!isViewingSaved) {
+                saveQuizToHistory(currentQuizKey, totalScore, matchedResult.title, matchedResult.desc, maxPossibleScore);
+            }
+        }
+
+        // Native HTML5 Canvas Renderer
+        function downloadCardNative() {
+            let canvas = document.createElement('canvas');
+            canvas.width = 600;
+            canvas.height = 360;
+            let ctx = canvas.getContext('2d');
+
+            // Card Gradient Background
+            let gradient = ctx.createLinearGradient(0, 0, 600, 360);
+            gradient.addColorStop(0, '#0f172a');
+            gradient.addColorStop(1, '#1e1b4b');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 600, 360);
+
+            // Border Frame
+            ctx.strokeStyle = '#4338ca';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(12, 12, 576, 336);
+
+            // Brand Tag Header
+            ctx.fillStyle = '#818cf8';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.fillText(document.getElementById('result-domain-label').innerText.toUpperCase(), 32, 48);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 24px sans-serif';
+            ctx.fillText(document.getElementById('result-title').innerText, 32, 88);
+
+            // Description Wrap
+            ctx.fillStyle = '#cbd5e1';
+            ctx.font = '13px sans-serif';
+            let desc = document.getElementById('result-description').innerText;
+            if (desc.length > 70) {
+                ctx.fillText(desc.substring(0, 70), 32, 128);
+                ctx.fillText(desc.substring(70, 140) + '...', 32, 148);
+            } else {
+                ctx.fillText(desc, 32, 128);
+            }
+
+            // Metric Text & Progress Bar Frame
+            let scoreText = document.getElementById('score-metric').innerText;
+            ctx.fillStyle = '#818cf8';
+            ctx.font = 'bold 13px sans-serif';
+            ctx.fillText(scoreText, 32, 210);
+
+            // Bar background
+            ctx.fillStyle = '#020617';
+            ctx.fillRect(32, 224, 536, 12);
+
+            // Bar fill
+            let quiz = quizzes[currentQuizKey];
+            let maxPossible = quiz ? quiz.questions.length * 5 : 20;
+            let percent = Math.min(totalScore / maxPossible, 1);
+            ctx.fillStyle = '#6366f1';
+            ctx.fillRect(32, 224, 536 * percent, 12);
+
+            // Branding Footer
+            ctx.fillStyle = '#64748b';
+            ctx.font = '11px sans-serif';
+            ctx.fillText('Verified on prismiq.app', 440, 320);
+
+            // Auto-Trigger Download
+            let link = document.createElement('a');
+            link.download = `prismiq-${currentQuizKey || 'audit'}-aura.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function shareToLinkedIn() {
+            let text = encodeURIComponent(`Just took the PrismIQ assessment and unlocked my archetype: "${lastResultTitle}"! Check out your own behavioral risk DNA at prismiq.app`);
+            window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${text}`, '_blank');
+        }
+
+        function shareToTwitter() {
+            let text = encodeURIComponent(`Just discovered my risk archetype on PrismIQ: "${lastResultTitle}" ⚡ Take the quiz to see your behavioral profile:`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=https://prismiq.app`, '_blank');
+        }
+
+        function copyShareText() {
+            let shareText = `I just took the PrismIQ behavioral audit and discovered my archetype is "${lastResultTitle}"! Test your risk-taking DNA at prismiq.app`;
+            navigator.clipboard.writeText(shareText).then(() => {
+                alert("Share text copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
