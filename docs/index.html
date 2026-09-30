@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrismIQ | Behavior & Perception Hub</title>
+    <title>PrismIQ | Behavior & Perception Quizzes</title>
 
     <!-- Standard OpenGraph Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://prismiq.app/">
     <meta property="og:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta property="og:description" content="Evaluate your true risk-taking architecture across career, wealth, social, and adventure domains.">
+    <meta property="og:description" content="Evaluate your true risk-taking architecture across career, financial, social, and physical domains.">
     <meta property="og:image" content="https://prismiq.app/og-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://prismiq.app/">
     <meta name="twitter:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta name="twitter:description" content="Evaluate your true risk-taking architecture across career, wealth, social, and adventure domains.">
+    <meta name="twitter:description" content="Evaluate your true risk-taking architecture across career, financial, social, and physical domains.">
     <meta name="twitter:image" content="https://prismiq.app/og-preview.png">
 
     <!-- Tailwind CSS -->
@@ -33,7 +33,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 0;
-            pointer-events: none !important; /* Lets clicks pass through to app elements */
+            pointer-events: none !important;
         }
     </style>
 </head>
@@ -68,51 +68,51 @@
                     <!-- CONCEPT & BENEFIT BRIEF NOTE -->
                     <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl text-xs sm:text-sm text-slate-300 max-w-lg mx-auto text-left leading-relaxed space-y-2">
                         <p>
-                            PrismIQ is a behavioral self-audit engine designed to decode your psychological threshold for risk across distinct personal and professional domains. By answering situational scenarios, you reveal your underlying decision-making DNA rather than aspirational guesswork. Use your unlocked archetypes to identify hidden cognitive biases, optimize strategic decision-making, and navigate high-stakes career or financial choices with clarity.
+                            PrismIQ is a behavioral self-audit engine designed to decode your psychological threshold for risk across distinct personal and professional domains. Select any card below to read a comprehensive domain overview or directly take our 8-question risk assessment.
                         </p>
                     </div>
                 </div>
 
                 <!-- Quiz Cards Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div onclick="startQuiz('career')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div onclick="openDetailView('career')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">💼</span>
-                            <span class="text-xs text-indigo-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                            <span class="text-xs text-indigo-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Career & Strategic Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Evaluate your willingness to pivot, chase equity, and embrace professional uncertainty.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Evaluate skill relevance, industry stability, strategic pivots, and long-term career growth.</p>
                     </div>
 
-                    <div onclick="startQuiz('financial')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div onclick="openDetailView('financial')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl">📈</span>
-                            <span class="text-xs text-emerald-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                            <span class="text-2xl">💳</span>
+                            <span class="text-xs text-emerald-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Financial & Wealth Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Discover your appetite for high-volatility assets, investments, and monetary bets.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Assess cash flow stability, asset concentration, debt management, and emergency readiness.</p>
                     </div>
 
-                    <div onclick="startQuiz('social')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div onclick="openDetailView('social')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl">🗣️</span>
-                            <span class="text-xs text-purple-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                            <span class="text-2xl">🤝</span>
+                            <span class="text-xs text-purple-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Social & Conformity Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Measure how comfortable you are with public friction, controversy, and standing out.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Measure reputation resilience, willingness to challenge groupthink, and social support network strength.</p>
                     </div>
 
-                    <div onclick="startQuiz('adventure')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div onclick="openDetailView('physical')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-2xl">⚡</span>
-                            <span class="text-xs text-amber-400 font-medium group-hover:translate-x-1 transition-transform">Take Quiz →</span>
+                            <span class="text-2xl">🩺</span>
+                            <span class="text-xs text-amber-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Adventure & Physical Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Check your threshold for physical thrills, outdoor exposure, and novelty-seeking.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Examine physical health thresholds, endurance limits, burnout, and outdoor adventure risk-taking.</p>
                     </div>
                 </div>
 
-                <!-- USER PROFILE HISTORY SECTION (LOCAL PERSISTENCE) -->
+                <!-- USER PROFILE HISTORY SECTION -->
                 <div id="history-section" class="space-y-4 pt-4 border-t border-slate-900">
                     <div class="flex justify-between items-center">
                         <h3 class="text-xs font-semibold uppercase tracking-widest text-indigo-400">Your Saved Profile DNA</h3>
@@ -124,7 +124,6 @@
                         <div class="flex justify-between items-center text-xs font-medium">
                             <div class="flex items-center gap-2">
                                 <span class="text-slate-300">Composite Prism Propensity</span>
-                                <!-- COMPOSITE CARD TRANSPARENT CIRCULAR INFO ICON -->
                                 <button onclick="openCompositeInfoModal()" title="How to read your Composite Propensity" class="w-5 h-5 rounded-full border border-indigo-400/50 text-indigo-300 hover:text-white hover:border-indigo-300 transition-all flex items-center justify-center text-[10px] italic font-serif bg-transparent">
                                     i
                                 </button>
@@ -149,35 +148,96 @@
                         <div class="bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
                             <div class="text-lg">💼</div>
                             <div class="text-xs font-bold text-indigo-300">Startup Gambit</div>
-                            <div class="text-[10px] text-slate-500">Career Domain</div>
+                            <div class="text-[10px] text-slate-500">Career & Strategic</div>
                         </div>
                         <div class="bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
-                            <div class="text-lg">📈</div>
+                            <div class="text-lg">💳</div>
                             <div class="text-xs font-bold text-emerald-300">High-Stakes Bull</div>
-                            <div class="text-[10px] text-slate-500">Wealth Domain</div>
+                            <div class="text-[10px] text-slate-500">Financial & Wealth</div>
                         </div>
                         <div class="bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
-                            <div class="text-lg">🗣️</div>
+                            <div class="text-lg">🤝</div>
                             <div class="text-xs font-bold text-purple-300">Social Alchemist</div>
-                            <div class="text-[10px] text-slate-500">Social Domain</div>
+                            <div class="text-[10px] text-slate-500">Social & Conformity</div>
                         </div>
                         <div class="bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
-                            <div class="text-lg">⚡</div>
+                            <div class="text-lg">🩺</div>
                             <div class="text-xs font-bold text-amber-300">Adrenaline Surfer</div>
-                            <div class="text-[10px] text-slate-500">Adventure Domain</div>
+                            <div class="text-[10px] text-slate-500">Adventure & Physical</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- VIEW 2: QUIZ SCREEN -->
+            <!-- VIEW 2: SECONDARY DETAIL SCREEN -->
+            <div id="detail-screen" class="hidden w-full space-y-6 py-4">
+                <button onclick="goHome()" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold transition-colors flex items-center gap-1">
+                    ← Back to Dashboard
+                </button>
+
+                <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6">
+                    <div class="space-y-2">
+                        <div id="detail-icon" class="text-4xl">💼</div>
+                        <h2 id="detail-title" class="text-2xl sm:text-3xl font-extrabold text-white">Understanding Risk</h2>
+                        <p id="detail-summary" class="text-slate-300 text-sm leading-relaxed"></p>
+                    </div>
+
+                    <hr class="border-slate-800" />
+
+                    <!-- Overview Section -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-indigo-400">What Is This Risk All About?</h3>
+                        <p id="detail-definition" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Common Examples & Scenarios</h4>
+                            <ul id="detail-examples" class="list-disc list-inside text-xs sm:text-sm text-slate-400 space-y-1 pl-1"></ul>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Key Vulnerability Indicators</h4>
+                            <ul id="detail-indicators" class="list-disc list-inside text-xs sm:text-sm text-slate-400 space-y-1 pl-1"></ul>
+                        </div>
+                    </div>
+
+                    <!-- Impact Section -->
+                    <div class="space-y-3 pt-2">
+                        <h3 class="text-lg font-bold text-indigo-400">How It May Impact You</h3>
+                        <div class="space-y-2 text-xs sm:text-sm">
+                            <div class="p-3 bg-slate-950/60 border-l-4 border-indigo-500 rounded-r-xl text-slate-300">
+                                <strong class="text-white">Immediate Effects:</strong> <span id="detail-impact-immediate"></span>
+                            </div>
+                            <div class="p-3 bg-slate-950/60 border-l-4 border-purple-500 rounded-r-xl text-slate-300">
+                                <strong class="text-white">Long-Term Consequences:</strong> <span id="detail-impact-longterm"></span>
+                            </div>
+                            <div class="p-3 bg-slate-950/60 border-l-4 border-emerald-500 rounded-r-xl text-slate-300">
+                                <strong class="text-white">Overall Reach:</strong> <span id="detail-impact-reach"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Box -->
+                    <div class="bg-indigo-950/30 border border-indigo-500/30 p-6 rounded-2xl text-center space-y-3">
+                        <h3 class="text-xl font-bold text-white">Discover Your Exposure Level</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
+                            Take our quick 8-question assessment to calculate your propensity score and reveal your domain archetype.
+                        </p>
+                        <div class="text-[11px] text-indigo-300 font-medium">⏱️ Estimated Time: 2–3 minutes</div>
+                        <button id="start-audit-btn" onclick="" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition-all text-sm">
+                            Start 8-Question Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: QUIZ SCREEN -->
             <div id="quiz-screen" class="hidden w-full space-y-6">
                 <div class="w-full bg-slate-900 h-2 rounded-full overflow-hidden border border-slate-800">
-                    <div id="progress-bar" class="bg-indigo-500 h-full transition-all duration-300" style="width: 25%;"></div>
+                    <div id="progress-bar" class="bg-indigo-500 h-full transition-all duration-300" style="width: 12.5%;"></div>
                 </div>
                 
                 <div class="flex justify-between text-xs text-slate-400">
-                    <span id="question-counter">Question 1 of 4</span>
+                    <span id="question-counter">Question 1 of 8</span>
                     <span id="quiz-category-tag" class="text-indigo-400 font-medium uppercase tracking-wider">Category</span>
                 </div>
 
@@ -190,18 +250,17 @@
                 <button onclick="goHome()" class="text-xs text-slate-500 hover:text-slate-300 transition-colors">← Back to Dashboard</button>
             </div>
 
-            <!-- VIEW 3: RESULTS SCREEN -->
+            <!-- VIEW 4: RESULTS SCREEN -->
             <div id="result-screen" class="hidden w-full space-y-6 py-4">
                 
                 <!-- Capture Card -->
                 <div id="capture-card" class="bg-gradient-to-br from-slate-900/90 to-indigo-950/90 backdrop-blur-lg border border-indigo-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6 relative">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p id="result-domain-label" class="text-xs text-indigo-400 uppercase tracking-widest font-semibold">Career Risk Archetype</p>
+                            <p id="result-domain-label" class="text-xs text-indigo-400 uppercase tracking-widest font-semibold">Career & Strategic Risk Archetype</p>
                             <h2 id="result-title" class="text-2xl sm:text-3xl font-black text-white mt-1">The Calculated Climber</h2>
                         </div>
                         <div class="flex items-center gap-3">
-                            <!-- RESULT CARD TRANSPARENT CIRCULAR INFO ICON -->
                             <button onclick="openInfoModal()" title="How to read your result" class="w-7 h-7 rounded-full border border-indigo-400/50 text-indigo-300 hover:text-white hover:border-indigo-300 transition-all flex items-center justify-center text-xs italic font-serif bg-transparent">
                                 i
                             </button>
@@ -218,10 +277,10 @@
                     <div class="border-t border-slate-800/80 pt-4 space-y-3">
                         <div class="flex justify-between text-xs font-medium text-slate-400">
                             <span>Domain Propensity Score</span>
-                            <span id="score-metric" class="text-indigo-400">Score: 12/20</span>
+                            <span id="score-metric" class="text-indigo-400">Score: 24/40</span>
                         </div>
                         <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
-                            <div id="result-meter" class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 70%;"></div>
+                            <div id="result-meter" class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 60%;"></div>
                         </div>
                     </div>
 
@@ -277,7 +336,7 @@
             <div class="text-xs text-slate-300 leading-relaxed space-y-3">
                 <p>
                     <strong class="text-indigo-400">What is Composite Propensity?</strong><br>
-                    This percentage reflects your overall baseline risk tolerance aggregated across all completed domain audits (Career, Wealth, Social, Adventure).
+                    This percentage reflects your overall baseline risk tolerance aggregated across all completed domain audits (Career & Strategic, Financial & Wealth, Social & Conformity, Adventure & Physical).
                 </p>
                 <p>
                     <strong class="text-indigo-400">Interpretation Bands:</strong>
@@ -287,9 +346,6 @@
                     <li><strong class="text-slate-200">36% – 65% (Balanced Explorer):</strong> You maintain calculated flexibility, taking measured risks in specific domains while retaining safeguards in others.</li>
                     <li><strong class="text-slate-200">66% – 100% (High Velocity):</strong> You possess an aggressive risk tolerance, comfortably navigating high uncertainty, rapid change, and volatility.</li>
                 </ul>
-                <p class="text-slate-400 text-[11px]">
-                    <em>Tip: Complete all 4 audits for a fully calibrated Composite score.</em>
-                </p>
             </div>
             <div class="pt-2 text-right">
                 <button onclick="closeCompositeInfoModal()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg">Got it</button>
@@ -309,16 +365,13 @@
                     <strong class="text-indigo-400">1. Archetype Persona:</strong> Your assigned title represents your primary behavioral orientation under uncertainty for this domain.
                 </p>
                 <p>
-                    <strong class="text-indigo-400">2. Propensity Score:</strong> Calculated on a scale from 4 to 20:
+                    <strong class="text-indigo-400">2. Propensity Score:</strong> Calculated on a scale from 8 to 40 across 8 scenario checks:
                 </p>
                 <ul class="list-disc list-inside text-slate-400 space-y-1 pl-1">
-                    <li><strong class="text-slate-200">4 – 8 (Low Risk Threshold):</strong> Defensive posture prioritizing stability, security, and capital preservation.</li>
-                    <li><strong class="text-slate-200">9 – 14 (Moderate / Calculated):</strong> Strategic balance taking calculated leaps only when asymmetric upside exists.</li>
-                    <li><strong class="text-slate-200">15 – 20 (High Propensity):</strong> Dynamic risk-taker who thrives on chaos, high volatility, and non-conformity.</li>
+                    <li><strong class="text-slate-200">8 – 18 (Low Risk Threshold):</strong> Defensive posture prioritizing stability, security, and capital/reputation preservation.</li>
+                    <li><strong class="text-slate-200">19 – 29 (Moderate / Calculated):</strong> Strategic balance taking calculated leaps only when asymmetric upside exists.</li>
+                    <li><strong class="text-slate-200">30 – 40 (High Propensity):</strong> Dynamic risk-taker who thrives on chaos, high volatility, and non-conformity.</li>
                 </ul>
-                <p>
-                    <strong class="text-indigo-400">3. Composite Profile:</strong> Complete all 4 domain audits on the dashboard to generate your overall behavioral Prism score.
-                </p>
             </div>
             <div class="pt-2 text-right">
                 <button onclick="closeInfoModal()" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-lg">Got it</button>
@@ -485,175 +538,394 @@
         renderBg();
 
         /* ==================================================
-           2. PRISMIQ QUIZ CORE APP LOGIC
+           2. PRISMIQ QUIZ CORE APP DATA & LOGIC
            ================================================== */
         const quizzes = {
             career: {
+                id: "career",
                 name: "Career & Strategic Risk",
+                title: "Understanding Career & Strategic Risk",
+                icon: "💼",
+                summary: "Career & Strategic Risk involves factors that threaten your professional growth, job security, earning potential, strategic pivots, or long-term employability in a rapidly evolving market.",
+                about: {
+                    definition: "Career & Strategic Risk occurs when industry shifts, skill obsolescence, or organizational pivots create vulnerability in your employment stability, market leverage, and professional advancement.",
+                    examples: [
+                        "Automating tasks render core job skills less relevant.",
+                        "Industry downturns lead to unexpected downsizing or limited growth opportunities.",
+                        "Over-specialization in a niche tool or legacy framework with declining demand."
+                    ],
+                    keyIndicators: [
+                        "Stagnant skill set without recent learning or certifications",
+                        "Lack of a visible professional network outside your current employer",
+                        "High reliance on a single project, client, or company"
+                    ]
+                },
+                impact: {
+                    immediate: "Increased workplace anxiety, stagnation in compensation, and vulnerability during organizational restructuring.",
+                    longTerm: "Difficulty transitioning to new roles, wage erosion, and potential long-term career disorientation.",
+                    reach: "Directly influences your financial confidence, personal identity, and day-to-day motivation."
+                },
                 questions: [
                     {
-                        question: "You’re 3 years into a stable corporate job. An early-stage startup offers you a high-equity, high-risk role with a pay cut. You:",
+                        question: "How frequently do you update your core professional skills or acquire new certifications?",
                         options: [
-                            { text: "Politely decline. A steady paycheck and clear path are non-negotiable.", points: 1 },
-                            { text: "Negotiate to keep a base salary while taking a smaller piece of equity.", points: 3 },
-                            { text: "Quit the next day. Life’s too short to build someone else's dream safely.", points: 5 }
+                            { text: "Rarely—I rely on my established work experience.", points: 1 },
+                            { text: "Occasionally—when required by my employer or industry trends.", points: 3 },
+                            { text: "Continuously—I proactively pick up foreign technical domains.", points: 5 }
                         ]
                     },
                     {
-                        question: "Your team lead leaves unexpectedly, opening up a senior position you feel slightly underqualified for. Do you:",
+                        question: "How vulnerable is your current industry/role to automation or AI disruptions?",
                         options: [
-                            { text: "Keep your head down and let someone more experienced take it.", points: 1 },
-                            { text: "Apply after consulting a mentor to check if you're ready.", points: 3 },
-                            { text: "Step up immediately and pitch yourself as the ideal replacement.", points: 5 }
+                            { text: "Very vulnerable, but I prefer staying in my familiar position.", points: 1 },
+                            { text: "Moderately vulnerable; I keep an eye on industry developments.", points: 3 },
+                            { text: "I actively seek out AI/automation tools to transform how I work.", points: 5 }
                         ]
                     },
                     {
-                        question: "You have an idea to completely automate your team's workflow, but it risks disrupting current management processes if it fails. You:",
+                        question: "Do you have a personal network outside your immediate workplace you can lean on for jobs?",
                         options: [
-                            { text: "Stick to the legacy process. If it isn't broken, don't fix it.", points: 1 },
-                            { text: "Test it quietly on a small sub-project first to prove the concept.", points: 3 },
-                            { text: "Roll it out team-wide overnight and let results speak for themselves.", points: 5 }
+                            { text: "No, my professional network is strictly within my current company.", points: 1 },
+                            { text: "A small network of trusted former colleagues.", points: 3 },
+                            { text: "An extensive, active network across multiple companies and sectors.", points: 5 }
                         ]
                     },
                     {
-                        question: "When considering your professional trajectory over the next decade, your biggest fear is:",
+                        question: "How easily could you secure a comparable role within 3 months if you lost your job today?",
                         options: [
-                            { text: "Experiencing sudden unemployment or unstable income streams.", points: 1 },
-                            { text: "Stagnating in a comfortable but mediocre role that lacks growth.", points: 3 },
-                            { text: "Never taking the big swing to build something truly independent.", points: 5 }
+                            { text: "Very difficult—it would take significant time and effort.", points: 1 },
+                            { text: "Feasible with effort and tapping into my existing contacts.", points: 3 },
+                            { text: "Very easy—I regularly receive inbound inquiries or have leads.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Are you dependent on a single client, manager, or project for your career advancement?",
+                        options: [
+                            { text: "Yes, completely dependent on one main stakeholder.", points: 1 },
+                            { text: "Somewhat—I have some exposure to other leaders/projects.", points: 3 },
+                            { text: "No, I have diversified visibility across multiple teams and initiatives.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How active are you in tracking emerging trends and demands in your field?",
+                        options: [
+                            { text: "I stick strictly to my assigned day-to-day duties.", points: 1 },
+                            { text: "I read industry newsletters and attend occasional events.", points: 3 },
+                            { text: "I constantly analyze market shifts to reposition myself ahead of time.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Does your current company offer formal opportunities for growth and upskilling?",
+                        options: [
+                            { text: "Very limited growth paths, but I prefer the routine.", points: 1 },
+                            { text: "Moderate opportunities—I take advantage of them when available.", points: 3 },
+                            { text: "If growth stalls, I build my own initiatives or move to new ventures.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you have a clear 3-to-5 year career progression plan?",
+                        options: [
+                            { text: "No, I take things strictly month-by-month.", points: 1 },
+                            { text: "I have a general directional idea of where I want to go.", points: 3 },
+                            { text: "Yes, with aggressive milestones and contingency options.", points: 5 }
                         ]
                     }
                 ],
                 results: [
-                    { max: 8, title: "The Career Fortress", desc: "You prioritize extreme job stability, predictability, and a protected career trajectory above all else." },
-                    { max: 14, title: "The Calculated Climber", desc: "You calculate your professional steps carefully, taking smart risks only when the data and upside support it." },
-                    { max: 20, title: "The Startup Gambit", desc: "You thrive on professional chaos and high-stakes pivots, treating career leaps as essential for growth." }
+                    { max: 18, title: "The Career Fortress", desc: "You prioritize extreme job stability, predictability, and a protected career trajectory above all else." },
+                    { max: 29, title: "The Calculated Climber", desc: "You calculate your professional steps carefully, taking smart risks only when the data and upside support it." },
+                    { max: 40, title: "The Startup Gambit", desc: "You thrive on professional chaos and high-stakes pivots, treating career leaps as essential for growth." }
                 ]
             },
+
             financial: {
+                id: "financial",
                 name: "Financial & Wealth Risk",
+                title: "Understanding Financial & Wealth Risk",
+                icon: "💳",
+                summary: "Financial & Wealth Risk centers on the potential to lose capital, experience cash flow shortfalls, mismanage debt leverage, or fail to achieve long-term wealth security.",
+                about: {
+                    definition: "It represents exposure to financial loss caused by poor liquidity, unexpected expenses, asset over-concentration, market fluctuations, or unmanaged debt structures.",
+                    examples: [
+                        "An unexpected medical emergency or major home repair without an emergency reserve.",
+                        "Over-concentration of savings or investments in a single high-risk asset.",
+                        "Rising debt payments outpacing monthly steady income."
+                    ],
+                    keyIndicators: [
+                        "Living paycheck to paycheck without an emergency buffer",
+                        "High debt-to-income ratio or growing credit reliance",
+                        "Unclear or nonexistent long-term budget and investment strategy"
+                    ]
+                },
+                impact: {
+                    immediate: "Cash flow tightness, high daily stress regarding expenses, and limited flexibility for immediate opportunities.",
+                    longTerm: "Delayed retirement, compounding debt, and inability to wealth-build or cover major life events.",
+                    reach: "Affects overall peace of mind, family stability, and future planning freedom."
+                },
                 questions: [
                     {
-                        question: "You have some extra savings after paying off bills. How do you deploy it?",
+                        question: "Do you have an emergency savings fund covering at least 3–6 months of living expenses?",
                         options: [
-                            { text: "High-yield savings accounts, government bonds, or index funds. Zero drama.", points: 1 },
-                            { text: "A balanced mix of blue-chip stocks and steady growth assets.", points: 3 },
-                            { text: "All-in on a high-volatility bet (speculative tech play, crypto, or angel investing).", points: 5 }
+                            { text: "Yes, strictly locked away in cash or liquid yield accounts.", points: 1 },
+                            { text: "I have a modest 1–2 month emergency fund.", points: 3 },
+                            { text: "No, my capital is fully deployed into active/volatile investments.", points: 5 }
                         ]
                     },
                     {
-                        question: "A high-risk asset you invested in drops 30% in a single week. Your reaction is to:",
+                        question: "What percentage of your monthly income goes toward non-essential debt payments?",
                         options: [
-                            { text: "Panic-sell immediately to cut your losses and protect remaining capital.", points: 1 },
-                            { text: "Hold tight and wait to see if the market corrects itself over time.", points: 3 },
-                            { text: "Buy more at the dip—volatility is just an opportunity.", points: 5 }
+                            { text: "0%—I avoid or immediately pay off non-essential debt.", points: 1 },
+                            { text: "10% to 25% of my monthly income.", points: 3 },
+                            { text: "More than 25%—I use leverage heavily to finance opportunities.", points: 5 }
                         ]
                     },
                     {
-                        question: "A friend pitches an unproven, early-stage business idea looking for seed capital. You:",
+                        question: "How diversified are your savings, investments, or income sources?",
                         options: [
-                            { text: "Politely pass. Mixing friendship with high-risk capital is a bad idea.", points: 1 },
-                            { text: "Invest a small, disposable amount that won't hurt if it goes to zero.", points: 3 },
-                            { text: "Back them heavily—high risk yields legendary returns.", points: 5 }
+                            { text: "Ultra-safe options: cash equivalents, bonds, or index funds.", points: 1 },
+                            { text: "Balanced portfolio across stocks, real estate, and funds.", points: 3 },
+                            { text: "Concentrated bets in high-volatility assets or early ventures.", points: 5 }
                         ]
                     },
                     {
-                        question: "How do you handle budgeting and emergency financial buffers?",
+                        question: "Do you track your monthly income and expenditure using a budget?",
                         options: [
-                            { text: "I maintain a strict 6-to-12 month emergency fund in cash equivalents.", points: 1 },
-                            { text: "I keep a modest buffer while letting the rest compound in investments.", points: 3 },
-                            { text: "Emergency funds are dead capital; I stay fully deployed in active positions.", points: 5 }
+                            { text: "Yes, strictly itemized and reviewed every month.", points: 1 },
+                            { text: "I monitor general income and expenses loosely.", points: 3 },
+                            { text: "No formal budget—I focus entirely on maximizing growth.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Could you comfortably handle a sudden major unexpected expense without borrowing?",
+                        options: [
+                            { text: "Easily, using cash reserves without touching long-term assets.", points: 1 },
+                            { text: "Yes, but I might need to liquidate some minor holdings.", points: 3 },
+                            { text: "It would require taking on debt or taking heavy losses.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you have adequate personal insurance coverage (health, life, income protection)?",
+                        options: [
+                            { text: "Fully covered across all categories.", points: 1 },
+                            { text: "Basic coverage provided by employer or standard plan.", points: 3 },
+                            { text: "Minimal or no insurance—I self-insure.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How regularly do you review and rebalance your investments or financial goals?",
+                        options: [
+                            { text: "Quarterly or annually on a fixed, disciplined schedule.", points: 1 },
+                            { text: "Whenever major market events occur.", points: 3 },
+                            { text: "Continuously—I trade or adjust positions dynamically.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you have a structured retirement plan currently in motion?",
+                        options: [
+                            { text: "Yes, automated contributions to long-term retirement accounts.", points: 1 },
+                            { text: "A loose plan that I contribute to when surplus cash is available.", points: 3 },
+                            { text: "My strategy relies on high-upside entrepreneurial swings.", points: 5 }
                         ]
                     }
                 ],
                 results: [
-                    { max: 8, title: "The Wealth Vault", desc: "Capital preservation is your core religion. You build heavy safety buffers to insulate against economic turbulence." },
-                    { max: 14, title: "The Balanced Allocator", desc: "You diversify prudently, balancing sensible growth vehicles with controlled exposure to market risk." },
-                    { max: 20, title: "The High-Stakes Bull", desc: "You view capital as ammunition for high-reward bets without flinching at financial turbulence." }
+                    { max: 18, title: "The Wealth Vault", desc: "Capital preservation is your core religion. You build heavy safety buffers to insulate against economic turbulence." },
+                    { max: 29, title: "The Balanced Allocator", desc: "You diversify prudently, balancing sensible growth vehicles with controlled exposure to market risk." },
+                    { max: 40, title: "The High-Stakes Bull", desc: "You view capital as ammunition for high-reward bets without flinching at financial turbulence." }
                 ]
             },
+
             social: {
+                id: "social",
                 name: "Social & Conformity Risk",
+                title: "Understanding Social & Conformity Risk",
+                icon: "🤝",
+                summary: "Social & Conformity Risk encompasses threats to your personal relationships, community standing, willingness to voice non-conforming views, and social support networks.",
+                about: {
+                    definition: "It is the possibility of isolation, reputational strain, or peer rejection resulting from challenging group consensus, making unpopular decisions, or experiencing environmental shifts.",
+                    examples: [
+                        "Expressing a contrarian perspective in an organization that enforces strict consensus.",
+                        "Relocating to a new city or remote job without actively building a local network.",
+                        "Over-focusing on work to the detriment of core personal relationships."
+                    ],
+                    keyIndicators: [
+                        "Feeling isolated or lacking trusted individuals to turn to during crises",
+                        "Hesitancy to speak up when your perspective contradicts group opinion",
+                        "High friction or unresolved conflict within key personal or work circles"
+                    ]
+                },
+                impact: {
+                    immediate: "Feelings of loneliness, heightened stress during difficult moments, and fear of reputational fallout.",
+                    longTerm: "Erosion of long-term support systems, weaker professional opportunities driven by network gaps, and reduced emotional resilience.",
+                    reach: "Deeply impacts mental well-being, sense of belonging, and personal authenticity."
+                },
                 questions: [
                     {
-                        question: "You're at a dinner party where someone expresses an opinion on a controversial topic you strongly disagree with. You:",
+                        question: "Do you have at least 2–3 people you can rely on completely during a personal crisis?",
                         options: [
-                            { text: "Nod politely and change the subject. Keeping the peace matters more.", points: 1 },
-                            { text: "Wait for a quiet moment to pull them aside and offer a calm alternative view.", points: 3 },
-                            { text: "Call it out immediately across the table and spark a passionate public debate.", points: 5 }
+                            { text: "Yes, a close inner circle I trust implicitly.", points: 1 },
+                            { text: "1 or 2 people, but we talk infrequently.", points: 3 },
+                            { text: "No, I handle personal crises entirely on my own.", points: 5 }
                         ]
                     },
                     {
-                        question: "How comfortable are you sharing an unconventional personal belief or creative project publicly online?",
+                        question: "How frequently do you engage in meaningful social interactions outside of work?",
                         options: [
-                            { text: "Very uncomfortable. I prefer to keep my opinions private to avoid judgment.", points: 1 },
-                            { text: "Cautious. I share things only with a curated circle of close friends.", points: 3 },
-                            { text: "Completely comfortable. Let people judge—authenticity beats approval.", points: 5 }
+                            { text: "Multiple times a week—social connection is central to my routine.", points: 1 },
+                            { text: "A couple of times a month.", points: 3 },
+                            { text: "Rarely—I prioritize solo endeavors and deep work.", points: 5 }
                         ]
                     },
                     {
-                        question: "You notice a group consensus forming at work that you know is fundamentally flawed. Do you:",
+                        question: "Do you feel connected to a community, group, or local peer circle?",
                         options: [
-                            { text: "Stay quiet and let the group proceed to avoid rocking the boat.", points: 1 },
-                            { text: "Voice your concerns privately to a supervisor or close colleague.", points: 3 },
-                            { text: "Openly challenge the consensus in front of the entire team.", points: 5 }
+                            { text: "Yes, firmly rooted in a local or affinity group.", points: 1 },
+                            { text: "Somewhat connected to a few dispersed groups.", points: 3 },
+                            { text: "No, I operate as an independent agent.", points: 5 }
                         ]
                     },
                     {
-                        question: "When attending a large networking event where you don't know anyone, your approach is:",
+                        question: "How effectively do you navigate and resolve conflicts in close relationships?",
                         options: [
-                            { text: "Stick close to anyone you already recognize or look at your phone.", points: 1 },
-                            { text: "Approach small groups or friendly-looking individuals cautiously.", points: 3 },
-                            { text: "Walk straight into the center of the room and introduce yourself loudly to strangers.", points: 5 }
+                            { text: "I seek instant resolution to protect social harmony.", points: 1 },
+                            { text: "I address conflicts after taking time to cool down.", points: 3 },
+                            { text: "I am comfortable with friction and don't mind standing alone.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you actively invest time into maintaining relationships with old friends/family?",
+                        options: [
+                            { text: "Yes, regular calls, messages, and visits.", points: 1 },
+                            { text: "Occasionally, when time permits.", points: 3 },
+                            { text: "Rarely—I focus almost exclusively on future goals.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How comfortable do you feel asking for help when experiencing emotional distress?",
+                        options: [
+                            { text: "Very comfortable—I lean open-heartedly on my support network.", points: 1 },
+                            { text: "Selective—only with a spouse or lifelong friend.", points: 3 },
+                            { text: "Uncomfortable—I keep vulnerabilities to myself.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Does your current work schedule allow sufficient time for personal social life?",
+                        options: [
+                            { text: "Yes, strict work-life boundaries.", points: 1 },
+                            { text: "It fluctuates depending on work pressure.", points: 3 },
+                            { text: "No, work completely dominates my wake time.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you feel accepted and supported in your primary social circles?",
+                        options: [
+                            { text: "Completely accepted and supported.", points: 1 },
+                            { text: "Mostly, though I keep certain opinions reserved.", points: 3 },
+                            { text: "I routinely challenge and disrupt my circles' expectations.", points: 5 }
                         ]
                     }
                 ],
                 results: [
-                    { max: 8, title: "The Diplomat", desc: "You value social harmony and safety, choosing your battles carefully to avoid unnecessary public friction." },
-                    { max: 14, title: "The Nuanced Voice", desc: "You are willing to express alternative views when necessary, but always maintain a polished social filter." },
-                    { max: 20, title: "The Social Alchemist", desc: "You embrace controversy and standing out, completely unfazed by public pushback or social friction." }
+                    { max: 18, title: "The Diplomat", desc: "You value social harmony and safety, choosing your battles carefully to avoid unnecessary public friction." },
+                    { max: 29, title: "The Nuanced Voice", desc: "You are willing to express alternative views when necessary, but always maintain a polished social filter." },
+                    { max: 40, title: "The Social Alchemist", desc: "You embrace controversy and standing out, completely unfazed by public pushback or social friction." }
                 ]
             },
-            adventure: {
+
+            physical: {
+                id: "physical",
                 name: "Adventure & Physical Risk",
+                title: "Understanding Adventure & Physical Risk",
+                icon: "🩺",
+                summary: "Adventure & Physical Risk involves factors that challenge your physical endurance, extreme sports limits, bodily recovery, and overall physical safety.",
+                about: {
+                    definition: "It arises from physical endurance limits, high-intensity pursuits, lifestyle habits, poor ergonomics, or environmental exposure that increases vulnerability to injury or physical exhaustion.",
+                    examples: [
+                        "Engaging in extreme sports or intense outdoor activities without adequate training.",
+                        "Chronic lack of quality sleep combined with high physical exertion and stress.",
+                        "Ignoring early physical symptoms or skipping routine health checkups."
+                    ],
+                    keyIndicators: [
+                        "Persistent fatigue, frequent minor injuries, or bodily strain",
+                        "Irregular sleep, poor nutrition, or pushing physical recovery boundaries",
+                        "High daily physical output without restorative recovery time"
+                    ]
+                },
+                impact: {
+                    immediate: "Low daily energy, acute physical injury, decreased focus, and higher susceptibility to illness.",
+                    longTerm: "Development of chronic wear-and-tear conditions, reduced long-term mobility, and physical burnout.",
+                    reach: "Limits your capacity across active hobbies, daily output, and long-term physical endurance."
+                },
                 questions: [
                     {
-                        question: "Your friends invite you on a weekend trip involving extreme activities you've never tried (like backcountry skiing).",
+                        question: "Do you consistently get 7–8 hours of quality, uninterrupted sleep per night?",
                         options: [
-                            { text: "Opt out or stay at the lodge with a book. No need to test gravity.", points: 1 },
-                            { text: "Do it, but only after checking safety gear, reviews, and guides thoroughly.", points: 3 },
-                            { text: "First one off the cliff. Let’s see what happens.", points: 5 }
+                            { text: "Always—sleep is a non-negotiable priority.", points: 1 },
+                            { text: "Most nights, unless workload spikes.", points: 3 },
+                            { text: "Rarely—I routinely sacrifice sleep for productivity.", points: 5 }
                         ]
                     },
                     {
-                        question: "When traveling to a new foreign country, your preferred style is:",
+                        question: "How many days per week do you engage in moderate-to-vigorous physical activity?",
                         options: [
-                            { text: "A fully booked resort tour with strict itineraries and verified safety ratings.", points: 1 },
-                            { text: "Booking a flight and hotel, then figuring out daily plans on the ground.", points: 3 },
-                            { text: "Backpacking with a one-way ticket and zero fixed lodging plans.", points: 5 }
+                            { text: "4–5+ days with structured exercise routines.", points: 1 },
+                            { text: "1–3 days of light or informal activity.", points: 3 },
+                            { text: "0 days—sedentary lifestyle.", points: 5 }
                         ]
                     },
                     {
-                        question: "You are offered a chance to try a high-speed vehicle or extreme motorsport track day. You:",
+                        question: "How balanced and nutrient-dense is your daily dietary intake?",
                         options: [
-                            { text: "Watch safely from the grandstands. Too much physical vulnerability.", points: 1 },
-                            { text: "Take a few cautious laps well within speed limits.", points: 3 },
-                            { text: "Push the car to its absolute limits right out of the gate.", points: 5 }
+                            { text: "Strict, high-quality nutrition.", points: 1 },
+                            { text: "Generally balanced with occasional indulgences.", points: 3 },
+                            { text: "Highly processed, convenient fast food.", points: 5 }
                         ]
                     },
                     {
-                        question: "How do you approach health routines or medical advice regarding new treatments?",
+                        question: "Do you schedule annual health checkups and routine physical screenings?",
                         options: [
-                            { text: "Extremely conservative. I stick strictly to proven, long-standing practices.", points: 1 },
-                            { text: "Open-minded, provided there is solid clinical backing and data.", points: 3 },
-                            { text: "Eager to experiment with cutting-edge health biohacking and novel therapies.", points: 5 }
+                            { text: "Yes, strictly on schedule every year.", points: 1 },
+                            { text: "Only when I feel something might be wrong.", points: 3 },
+                            { text: "No, I avoid medical checkups unless forced.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How frequently do you experience unmanaged daily physical fatigue or exhaustion?",
+                        options: [
+                            { text: "Rarely—I manage energy levels proactively.", points: 1 },
+                            { text: "Occasionally near the end of busy weeks.", points: 3 },
+                            { text: "Almost constantly.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you maintain ergonomic postures and movement breaks during long working hours?",
+                        options: [
+                            { text: "Yes, ergonomic desk setup and hourly stretch breaks.", points: 1 },
+                            { text: "I try to, but forget when deeply focused.", points: 3 },
+                            { text: "No—I sit hunched over for hours without moving.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "How effectively do you manage daily physical stress indicators (muscle tension, headaches)?",
+                        options: [
+                            { text: "Through active recovery: stretching, breathwork, or walking.", points: 1 },
+                            { text: "I rest when it gets uncomfortable.", points: 3 },
+                            { text: "I push through the pain and ignore physical cues.", points: 5 }
+                        ]
+                    },
+                    {
+                        question: "Do you actively avoid substance reliance (excess caffeine, alcohol, nicotine) for stress?",
+                        options: [
+                            { text: "Yes, strictly regulated or zero consumption.", points: 1 },
+                            { text: "Moderate use during high stress periods.", points: 3 },
+                            { text: "Heavy daily reliance to maintain energy or unwind.", points: 5 }
                         ]
                     }
                 ],
                 results: [
-                    { max: 8, title: "The Comfort Zone Guardian", desc: "Physical safety and predictable environments are your baseline. You see little value in unnecessary danger." },
-                    { max: 14, title: "The Prepared Explorer", desc: "You love novelty and adventure, but you always pack a safety harness and map out contingencies." },
-                    { max: 20, title: "The Adrenaline Surfer", desc: "You chase the thrill of the unknown, trusting your reflexes and adaptability when situations get intense." }
+                    { max: 18, title: "The Sanctuary Guardian", desc: "Physical health and preventative safety are your foundational baseline. You protect bodily longevity diligently." },
+                    { max: 29, title: "The Balanced Runner", desc: "You maintain reasonable health habits, taking calculated physical risks while keeping major burnout at bay." },
+                    { max: 40, title: "The High-Burn Rate Player", desc: "You push your physical boundary limits to the edge, prioritizing short-term output over restorative recovery." }
                 ]
             }
         };
@@ -702,10 +974,8 @@
             let section = document.getElementById('history-section');
             let grid = document.getElementById('history-grid');
 
-            // Always unhide history section container
             section.classList.remove('hidden');
 
-            // Empty state placeholder
             if (keys.length === 0) {
                 grid.innerHTML = `
                     <div class="col-span-1 sm:col-span-2 bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-4 rounded-xl text-center text-xs text-slate-500">
@@ -764,12 +1034,42 @@
         function goHome() {
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('detail-screen').classList.add('hidden');
             document.getElementById('home-screen').classList.remove('hidden');
             
             currentQuestionIndex = 0;
             totalScore = 0;
             
             renderHistoryUI();
+        }
+
+        /* Navigates to Secondary Detail View Page */
+        function openDetailView(quizKey) {
+            let data = quizzes[quizKey];
+            if (!data) return;
+
+            document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('detail-screen').classList.remove('hidden');
+
+            document.getElementById('detail-icon').innerText = data.icon;
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-summary').innerText = data.summary;
+            document.getElementById('detail-definition').innerText = data.about.definition;
+
+            // Render List Items
+            document.getElementById('detail-examples').innerHTML = data.about.examples.map(ex => `<li>${ex}</li>`).join('');
+            document.getElementById('detail-indicators').innerHTML = data.about.keyIndicators.map(ind => `<li>${ind}</li>`).join('');
+
+            // Render Impact Sections
+            document.getElementById('detail-impact-immediate').innerText = data.impact.immediate;
+            document.getElementById('detail-impact-longterm').innerText = data.impact.longTerm;
+            document.getElementById('detail-impact-reach').innerText = data.impact.reach;
+
+            // Connect Start Audit Button
+            let btn = document.getElementById('start-audit-btn');
+            btn.onclick = () => startQuiz(quizKey);
         }
 
         function startQuiz(quizKey) {
@@ -779,6 +1079,7 @@
             totalScore = 0;
 
             document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('detail-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
             
@@ -823,6 +1124,7 @@
         function showResults(isViewingSaved = false) {
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('home-screen').classList.add('hidden');
+            document.getElementById('detail-screen').classList.add('hidden');
             document.getElementById('result-screen').classList.remove('hidden');
 
             let quiz = quizzes[currentQuizKey];
@@ -902,7 +1204,7 @@
 
             // Bar fill
             let quiz = quizzes[currentQuizKey];
-            let maxPossible = quiz ? quiz.questions.length * 5 : 20;
+            let maxPossible = quiz ? quiz.questions.length * 5 : 40;
             let percent = Math.min(totalScore / maxPossible, 1);
             ctx.fillStyle = '#6366f1';
             ctx.fillRect(32, 224, 536 * percent, 12);
@@ -936,11 +1238,10 @@
             });
         }
 
-        // Composite Info Modal Handlers
+        // Modal Handlers
         function openCompositeInfoModal() { document.getElementById('composite-info-modal').classList.remove('hidden'); }
         function closeCompositeInfoModal() { document.getElementById('composite-info-modal').classList.add('hidden'); }
 
-        // Result Info Modal Handlers
         function openInfoModal() { document.getElementById('info-modal').classList.remove('hidden'); }
         function closeInfoModal() { document.getElementById('info-modal').classList.add('hidden'); }
     </script>
