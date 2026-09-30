@@ -9,7 +9,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://prismiq.app/">
     <meta property="og:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta property="og:description" content="Evaluate your true risk-taking architecture across career, financial, social, and physical domains.">
+    <meta property="og:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
     <meta property="og:image" content="https://prismiq.app/og-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://prismiq.app/">
     <meta name="twitter:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta name="twitter:description" content="Evaluate your true risk-taking architecture across career, financial, social, and physical domains.">
+    <meta name="twitter:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
     <meta name="twitter:image" content="https://prismiq.app/og-preview.png">
 
     <!-- Tailwind CSS -->
@@ -40,7 +40,7 @@
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans selection:bg-indigo-500 selection:text-white relative">
 
     <!-- Scientific Motion Canvas Background Layer -->
-    <canvas id="sci-bg-canvas"></canvas>
+    <canvas id="sci-bg-canvas" aria-hidden="true"></canvas>
 
     <!-- Content Container wrapped to sit above canvas -->
     <div class="relative z-10 flex flex-col justify-between min-h-screen">
@@ -68,47 +68,47 @@
                     <!-- CONCEPT & BENEFIT BRIEF NOTE -->
                     <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl text-xs sm:text-sm text-slate-300 max-w-lg mx-auto text-left leading-relaxed space-y-2">
                         <p>
-                            PrismIQ is a behavioral self-audit engine designed to decode your psychological threshold for risk across distinct personal and professional domains. Select any card below to read a comprehensive domain overview or directly take our 8-question risk assessment.
+                            PrismIQ helps you understand how you handle risk across different parts of your life. Pick a category below to learn more, or jump straight into the short 8-question assessment.
                         </p>
                     </div>
                 </div>
 
                 <!-- Quiz Cards Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div onclick="openDetailView('career')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div role="button" tabindex="0" onclick="openDetailView('career')" onkeydown="handleCardKey(event, 'career')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">💼</span>
                             <span class="text-xs text-indigo-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Career & Strategic Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Evaluate skill relevance, industry stability, strategic pivots, and long-term career growth.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">See how open you are to career changes, learning new skills, and job stability.</p>
                     </div>
 
-                    <div onclick="openDetailView('financial')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div role="button" tabindex="0" onclick="openDetailView('financial')" onkeydown="handleCardKey(event, 'financial')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">💳</span>
                             <span class="text-xs text-emerald-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Financial & Wealth Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Assess cash flow stability, asset concentration, debt management, and emergency readiness.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Check how you manage savings, investments, debt, and emergency backup plans.</p>
                     </div>
 
-                    <div onclick="openDetailView('social')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div role="button" tabindex="0" onclick="openDetailView('social')" onkeydown="handleCardKey(event, 'social')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">🤝</span>
                             <span class="text-xs text-purple-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Social & Conformity Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Measure reputation resilience, willingness to challenge groupthink, and social support network strength.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Learn how comfortably you handle social pressure, express views, and build relationships.</p>
                     </div>
 
-                    <div onclick="openDetailView('physical')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div role="button" tabindex="0" onclick="openDetailView('physical')" onkeydown="handleCardKey(event, 'physical')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">🩺</span>
                             <span class="text-xs text-amber-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Adventure & Physical Risk</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed">Examine physical health thresholds, endurance limits, burnout, and outdoor adventure risk-taking.</p>
+                        <p class="text-xs text-slate-400 leading-relaxed">Examine your sleep habits, physical limits, health routines, and energy levels.</p>
                     </div>
                 </div>
 
@@ -123,8 +123,8 @@
                     <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 p-4 rounded-2xl space-y-2">
                         <div class="flex justify-between items-center text-xs font-medium">
                             <div class="flex items-center gap-2">
-                                <span class="text-slate-300">Composite Prism Propensity</span>
-                                <button onclick="openCompositeInfoModal()" title="How to read your Composite Propensity" class="w-5 h-5 rounded-full border border-indigo-400/50 text-indigo-300 hover:text-white hover:border-indigo-300 transition-all flex items-center justify-center text-[10px] italic font-serif bg-transparent">
+                                <span class="text-slate-300">Overall Risk Score</span>
+                                <button onclick="openCompositeInfoModal()" title="How to read your Overall Score" class="w-5 h-5 rounded-full border border-indigo-400/50 text-indigo-300 hover:text-white hover:border-indigo-300 transition-all flex items-center justify-center text-[10px] italic font-serif bg-transparent">
                                     i
                                 </button>
                             </div>
@@ -142,7 +142,7 @@
                 <!-- Persona Preview Showcase Section -->
                 <div class="space-y-4 pt-4 border-t border-slate-900">
                     <div class="text-center">
-                        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-500">Peak Domain Archetypes</h3>
+                        <h3 class="text-xs font-semibold uppercase tracking-widest text-slate-500">Risk Profiles by Category</h3>
                     </div>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         <div class="bg-slate-900/40 backdrop-blur-sm border border-slate-800/60 p-3 rounded-xl text-center space-y-1">
@@ -205,10 +205,10 @@
                         <h3 class="text-lg font-bold text-indigo-400">How It May Impact You</h3>
                         <div class="space-y-2 text-xs sm:text-sm">
                             <div class="p-3 bg-slate-950/60 border-l-4 border-indigo-500 rounded-r-xl text-slate-300">
-                                <strong class="text-white">Immediate Effects:</strong> <span id="detail-impact-immediate"></span>
+                                <strong class="text-white">Short-Term Effects:</strong> <span id="detail-impact-immediate"></span>
                             </div>
                             <div class="p-3 bg-slate-950/60 border-l-4 border-purple-500 rounded-r-xl text-slate-300">
-                                <strong class="text-white">Long-Term Consequences:</strong> <span id="detail-impact-longterm"></span>
+                                <strong class="text-white">Long-Term Impact:</strong> <span id="detail-impact-longterm"></span>
                             </div>
                             <div class="p-3 bg-slate-950/60 border-l-4 border-emerald-500 rounded-r-xl text-slate-300">
                                 <strong class="text-white">Overall Reach:</strong> <span id="detail-impact-reach"></span>
@@ -218,12 +218,12 @@
 
                     <!-- CTA Box -->
                     <div class="bg-indigo-950/30 border border-indigo-500/30 p-6 rounded-2xl text-center space-y-3">
-                        <h3 class="text-xl font-bold text-white">Discover Your Exposure Level</h3>
+                        <h3 class="text-xl font-bold text-white">Discover Your Risk Profile</h3>
                         <p class="text-xs sm:text-sm text-slate-300 max-w-md mx-auto">
-                            Take our quick 8-question assessment to calculate your propensity score and reveal your domain archetype.
+                            Take our quick 8-question quiz to calculate your score and reveal your personal risk style.
                         </p>
-                        <div class="text-[11px] text-indigo-300 font-medium">⏱️ Estimated Time: 2–3 minutes</div>
-                        <button id="start-audit-btn" onclick="" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition-all text-sm">
+                        <div class="text-[11px] text-indigo-300 font-medium">⏱️ Estimated Time: 2 minutes</div>
+                        <button id="start-audit-btn" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/30 transition-all text-sm">
                             Start 8-Question Assessment
                         </button>
                     </div>
@@ -257,7 +257,7 @@
                 <div id="capture-card" class="bg-gradient-to-br from-slate-900/90 to-indigo-950/90 backdrop-blur-lg border border-indigo-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6 relative">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p id="result-domain-label" class="text-xs text-indigo-400 uppercase tracking-widest font-semibold">Career & Strategic Risk Archetype</p>
+                            <p id="result-domain-label" class="text-xs text-indigo-400 uppercase tracking-widest font-semibold">Career & Strategic Risk Profile</p>
                             <h2 id="result-title" class="text-2xl sm:text-3xl font-black text-white mt-1">The Calculated Climber</h2>
                         </div>
                         <div class="flex items-center gap-3">
@@ -276,7 +276,7 @@
 
                     <div class="border-t border-slate-800/80 pt-4 space-y-3">
                         <div class="flex justify-between text-xs font-medium text-slate-400">
-                            <span>Domain Propensity Score</span>
+                            <span>Domain Risk Score</span>
                             <span id="score-metric" class="text-indigo-400">Score: 24/40</span>
                         </div>
                         <div class="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden border border-slate-800">
@@ -289,19 +289,52 @@
                     </div>
                 </div>
 
+                <!-- "SO WHAT?" BREAKDOWN SECTION -->
+                <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-6 sm:p-8 rounded-3xl space-y-6">
+                    <div class="flex items-center gap-2 text-indigo-400 font-semibold text-xs uppercase tracking-widest">
+                        <span>💡 "So What?" — Score Interpretation</span>
+                    </div>
+
+                    <!-- Easy Terms Interpretation -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">What Your Score Means</h4>
+                        <p id="result-interpretation" class="text-xs sm:text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-xl border border-slate-800/80"></p>
+                    </div>
+
+                    <!-- Key Takeaways -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Top Strategic Takeaways</h4>
+                        <ul id="result-takeaways" class="list-disc list-inside text-xs sm:text-sm text-slate-300 space-y-2 pl-1"></ul>
+                    </div>
+
+                    <!-- Action Items -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Recommended Action Items</h4>
+                        <div id="result-actions" class="space-y-2 text-xs sm:text-sm"></div>
+                    </div>
+
+                    <!-- Curated Further Reading Articles -->
+                    <div class="space-y-3 pt-2 border-t border-slate-800">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                            📚 Learn More — Essential Reading
+                        </h4>
+                        <div id="result-articles" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+                    </div>
+                </div>
+
                 <!-- Action Buttons -->
                 <div class="flex flex-col sm:flex-row gap-3">
-                    <button onclick="downloadCardNative()" class="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-center text-sm font-medium">
+                    <button onclick="downloadCardNative()" class="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-center text-sm">
                         📸 Download Aura Card
                     </button>
-                    <button onclick="goHome()" class="px-6 py-3.5 bg-slate-900/80 backdrop-blur hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold rounded-xl transition-all text-center text-sm font-medium">
+                    <button onclick="goHome()" class="px-6 py-3.5 bg-slate-900/80 backdrop-blur hover:bg-slate-800 border border-slate-800 text-slate-300 font-semibold rounded-xl transition-all text-center text-sm">
                         🏠 Hub
                     </button>
                 </div>
 
                 <!-- Social Share Bar -->
                 <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl space-y-3 text-center">
-                    <p class="text-xs text-slate-400 font-medium">Share your archetype with your network:</p>
+                    <p class="text-xs text-slate-400 font-medium">Share your profile with your network:</p>
                     <div class="flex justify-center gap-2">
                         <button onclick="shareToLinkedIn()" class="px-4 py-2 bg-[#0a66c2] hover:bg-[#095196] text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
                             LinkedIn
@@ -330,21 +363,21 @@
     <div id="composite-info-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-md w-full space-y-4 shadow-2xl">
             <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <h3 class="text-base font-bold text-white flex items-center gap-2">🌐 Composite Prism Propensity</h3>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">🌐 Overall Risk Score</h3>
                 <button onclick="closeCompositeInfoModal()" class="text-slate-400 hover:text-white text-sm">✕</button>
             </div>
             <div class="text-xs text-slate-300 leading-relaxed space-y-3">
                 <p>
-                    <strong class="text-indigo-400">What is Composite Propensity?</strong><br>
-                    This percentage reflects your overall baseline risk tolerance aggregated across all completed domain audits (Career & Strategic, Financial & Wealth, Social & Conformity, Adventure & Physical).
+                    <strong class="text-indigo-400">What does this overall score mean?</strong><br>
+                    This percentage combines your results across all completed quizzes (Career, Financial, Social, and Physical) to show your overall comfort with risk.
                 </p>
                 <p>
-                    <strong class="text-indigo-400">Interpretation Bands:</strong>
+                    <strong class="text-indigo-400">Score Ranges:</strong>
                 </p>
                 <ul class="list-disc list-inside text-slate-400 space-y-1 pl-1">
-                    <li><strong class="text-slate-200">0% – 35% (Conservative):</strong> You naturally seek high predictability, structural safety, and risk mitigation across life domains.</li>
-                    <li><strong class="text-slate-200">36% – 65% (Balanced Explorer):</strong> You maintain calculated flexibility, taking measured risks in specific domains while retaining safeguards in others.</li>
-                    <li><strong class="text-slate-200">66% – 100% (High Velocity):</strong> You possess an aggressive risk tolerance, comfortably navigating high uncertainty, rapid change, and volatility.</li>
+                    <li><strong class="text-slate-200">0% – 35% (Play It Safe):</strong> You prefer predictability, clear safety nets, and steady routines across life.</li>
+                    <li><strong class="text-slate-200">36% – 65% (Balanced Explorer):</strong> You take calculated chances when it makes sense, while keeping safeguards in place.</li>
+                    <li><strong class="text-slate-200">66% – 100% (Bold Adventurer):</strong> You are very comfortable with big changes, high uncertainty, and fast-paced opportunities.</li>
                 </ul>
             </div>
             <div class="pt-2 text-right">
@@ -362,15 +395,15 @@
             </div>
             <div class="text-xs text-slate-300 leading-relaxed space-y-3">
                 <p>
-                    <strong class="text-indigo-400">1. Archetype Persona:</strong> Your assigned title represents your primary behavioral orientation under uncertainty for this domain.
+                    <strong class="text-indigo-400">1. Your Profile Name:</strong> Your title shows your main approach to handling risk and uncertainty in this area.
                 </p>
                 <p>
-                    <strong class="text-indigo-400">2. Propensity Score:</strong> Calculated on a scale from 8 to 40 across 8 scenario checks:
+                    <strong class="text-indigo-400">2. Score Range (8 to 40 points):</strong>
                 </p>
                 <ul class="list-disc list-inside text-slate-400 space-y-1 pl-1">
-                    <li><strong class="text-slate-200">8 – 18 (Low Risk Threshold):</strong> Defensive posture prioritizing stability, security, and capital/reputation preservation.</li>
-                    <li><strong class="text-slate-200">19 – 29 (Moderate / Calculated):</strong> Strategic balance taking calculated leaps only when asymmetric upside exists.</li>
-                    <li><strong class="text-slate-200">30 – 40 (High Propensity):</strong> Dynamic risk-taker who thrives on chaos, high volatility, and non-conformity.</li>
+                    <li><strong class="text-slate-200">8 – 18 (Cautious):</strong> You prioritize stability, safety, and protecting what you already have.</li>
+                    <li><strong class="text-slate-200">19 – 29 (Balanced):</strong> You take planned, smart leaps when the potential reward is worth it.</li>
+                    <li><strong class="text-slate-200">30 – 40 (Bold):</strong> You thrive on change, high stakes, and new challenges.</li>
                 </ul>
             </div>
             <div class="pt-2 text-right">
@@ -410,6 +443,10 @@
         function resize() {
             width = bgCanvas.width = window.innerWidth;
             height = bgCanvas.height = window.innerHeight;
+            particles.forEach(p => {
+                if (p.x > width) p.x = Math.random() * width;
+                if (p.y > height) p.y = Math.random() * height;
+            });
         }
         window.addEventListener('resize', resize);
         resize();
@@ -544,26 +581,26 @@
             career: {
                 id: "career",
                 name: "Career & Strategic Risk",
-                title: "Understanding Career & Strategic Risk",
+                title: "Understanding Career Risk",
                 icon: "💼",
-                summary: "Career & Strategic Risk involves factors that threaten your professional growth, job security, earning potential, strategic pivots, or long-term employability in a rapidly evolving market.",
+                summary: "Career risk looks at how changes in your job, industry, or skills affect your work stability, income, and future growth.",
                 about: {
-                    definition: "Career & Strategic Risk occurs when industry shifts, skill obsolescence, or organizational pivots create vulnerability in your employment stability, market leverage, and professional advancement.",
+                    definition: "This risk comes into play when new technology, industry shifts, or company changes affect how secure and relevant your job feels.",
                     examples: [
-                        "Automating tasks render core job skills less relevant.",
-                        "Industry downturns lead to unexpected downsizing or limited growth opportunities.",
-                        "Over-specialization in a niche tool or legacy framework with declining demand."
+                        "New software or AI automating tasks you do every day.",
+                        "Company slowdowns or restructuring that limit promotion opportunities.",
+                        "Focusing entirely on a niche tool or technology that fewer companies use."
                     ],
                     keyIndicators: [
-                        "Stagnant skill set without recent learning or certifications",
-                        "Lack of a visible professional network outside your current employer",
-                        "High reliance on a single project, client, or company"
+                        "Not learning new skills or tools in recent years",
+                        "Having few professional contacts outside your current company",
+                        "Relying on just one project or boss for career progress"
                     ]
                 },
                 impact: {
-                    immediate: "Increased workplace anxiety, stagnation in compensation, and vulnerability during organizational restructuring.",
-                    longTerm: "Difficulty transitioning to new roles, wage erosion, and potential long-term career disorientation.",
-                    reach: "Directly influences your financial confidence, personal identity, and day-to-day motivation."
+                    immediate: "Feeling stuck at work, worrying about job changes, or missing out on pay raises.",
+                    longTerm: "Harder time switching jobs later and falling behind on current industry standards.",
+                    reach: "Affects your financial stability, confidence, and daily motivation."
                 },
                 questions: [
                     {
@@ -632,35 +669,86 @@
                     }
                 ],
                 results: [
-                    { max: 18, title: "The Career Fortress", desc: "You prioritize extreme job stability, predictability, and a protected career trajectory above all else." },
-                    { max: 29, title: "The Calculated Climber", desc: "You calculate your professional steps carefully, taking smart risks only when the data and upside support it." },
-                    { max: 40, title: "The Startup Gambit", desc: "You thrive on professional chaos and high-stakes pivots, treating career leaps as essential for growth." }
+                    { 
+                        max: 18, 
+                        title: "The Career Fortress", 
+                        desc: "You value job security, predictability, and steady growth above all else.",
+                        interpretation: "Your score shows that you prefer steady, predictable work environments. You excel at keeping things organized and reliable, but you might face surprises if new technology or market changes disrupt your field.",
+                        takeaways: [
+                            { title: "Strong Stability", desc: "You keep your earnings steady and avoid risky or uncertain job changes." },
+                            { title: "Skill Refresh Risk", desc: "Staying inside comfortable routines for too long can make it harder to jump to new roles if needed." }
+                        ],
+                        actionItems: [
+                            "Set aside 1 to 2 hours every week to try out new software tools or skills in your domain.",
+                            "Connect with former colleagues or industry peers at least once a month to keep your professional network warm."
+                        ],
+                        articles: [
+                            { title: "Managing Oneself", source: "Harvard Business Review", url: "https://hbr.org/2005/01/managing-oneself", desc: "Peter Drucker's classic guide on identifying your strengths and managing your professional growth." },
+                            { title: "How to Manage Your Career in a Changing World", source: "HBR Ascend", url: "https://hbr.org/topic/subject/career-planning", desc: "Actionable steps to maintain relevance amidst economic and technological disruptions." }
+                        ]
+                    },
+                    { 
+                        max: 29, 
+                        title: "The Calculated Climber", 
+                        desc: "You plan career moves carefully, taking smart opportunities when the upside is clear.",
+                        interpretation: "Your score shows a balanced approach to your career. You are willing to take on new challenges and promotions, but only after weighing the pros and cons.",
+                        takeaways: [
+                            { title: "Smart Adaptability", desc: "You switch gears smoothly when market needs change without taking reckless risks." },
+                            { title: "Good Timing", desc: "You balance job safety with steady skill improvement." }
+                        ],
+                        actionItems: [
+                            "Review your skills twice a year against current job openings in top companies.",
+                            "Form a personal advisory group of 2 to 3 trusted mentors to talk through your next strategic move."
+                        ],
+                        articles: [
+                            { title: "Managing Oneself", source: "Harvard Business Review", url: "https://hbr.org/1999/03/managing-oneself", desc: "Peter Drucker's timeless advice on continuous learning and career self-reliance." },
+                            { title: "Navigating Career Pivots", source: "Stanford Business Insights", url: "https://www.gsb.stanford.edu/insights", desc: "Insights on how to leverage existing strengths when making strategic career transitions." }
+                        ]
+                    },
+                    { 
+                        max: 40, 
+                        title: "The Startup Gambit", 
+                        desc: "You thrive in fast-paced environments and love taking bold leaps for high growth.",
+                        interpretation: "Your score shows you are comfortable with uncertainty and fast change. You see brand-new industries and risky projects as chances to learn and grow quickly.",
+                        takeaways: [
+                            { title: "Fast Growth", desc: "Taking bold steps opens doors to exciting, high-reward opportunities." },
+                            { title: "Burnout & Volatility Risk", desc: "Moving fast without safety nets can lead to fatigue or sudden career shifts." }
+                        ],
+                        actionItems: [
+                            "Keep a non-negotiable 6-month financial cushion so your bold moves are driven by opportunity, not money strain.",
+                            "Set clear yearly check-ins to evaluate risky projects and decide whether to double down or switch focus safely."
+                        ],
+                        articles: [
+                            { title: "How Innovators Manage Risk", source: "MIT Sloan Management Review", url: "https://sloanreview.mit.edu/", desc: "A guide on balancing breakthrough risk-taking with structural resilience." },
+                            { title: "Managing Oneself", source: "Harvard Business Review", url: "https://hbr.org/1999/03/managing-oneself", desc: "Frameworks for aligning aggressive personal drive with long-term career fulfillment." }
+                        ]
+                    }
                 ]
             },
 
             financial: {
                 id: "financial",
                 name: "Financial & Wealth Risk",
-                title: "Understanding Financial & Wealth Risk",
+                title: "Understanding Financial Risk",
                 icon: "💳",
-                summary: "Financial & Wealth Risk centers on the potential to lose capital, experience cash flow shortfalls, mismanage debt leverage, or fail to achieve long-term wealth security.",
+                summary: "Financial risk is about how likely you are to face money shortfalls, high debt burdens, or investment losses.",
                 about: {
-                    definition: "It represents exposure to financial loss caused by poor liquidity, unexpected expenses, asset over-concentration, market fluctuations, or unmanaged debt structures.",
+                    definition: "It measures how well your money is protected against unexpected bills, market drops, high monthly debt, or unmanaged spending.",
                     examples: [
-                        "An unexpected medical emergency or major home repair without an emergency reserve.",
-                        "Over-concentration of savings or investments in a single high-risk asset.",
-                        "Rising debt payments outpacing monthly steady income."
+                        "A sudden medical bill or major home repair without backup savings set aside.",
+                        "Putting most of your savings into a single high-risk asset or stock.",
+                        "Monthly debt payments taking up too much of your regular paycheck."
                     ],
                     keyIndicators: [
-                        "Living paycheck to paycheck without an emergency buffer",
-                        "High debt-to-income ratio or growing credit reliance",
-                        "Unclear or nonexistent long-term budget and investment strategy"
+                        "Living paycheck to paycheck with no emergency savings",
+                        "High credit card balances or heavy debt load",
+                        "No clear monthly budget or long-term savings plan"
                     ]
                 },
                 impact: {
-                    immediate: "Cash flow tightness, high daily stress regarding expenses, and limited flexibility for immediate opportunities.",
-                    longTerm: "Delayed retirement, compounding debt, and inability to wealth-build or cover major life events.",
-                    reach: "Affects overall peace of mind, family stability, and future planning freedom."
+                    immediate: "Daily stress over bills and tight cash flow when unexpected expenses arise.",
+                    longTerm: "Growing debt burdens and falling behind on long-term retirement and savings goals.",
+                    reach: "Impacts your peace of mind, family security, and future financial freedom."
                 },
                 questions: [
                     {
@@ -729,35 +817,86 @@
                     }
                 ],
                 results: [
-                    { max: 18, title: "The Wealth Vault", desc: "Capital preservation is your core religion. You build heavy safety buffers to insulate against economic turbulence." },
-                    { max: 29, title: "The Balanced Allocator", desc: "You diversify prudently, balancing sensible growth vehicles with controlled exposure to market risk." },
-                    { max: 40, title: "The High-Stakes Bull", desc: "You view capital as ammunition for high-reward bets without flinching at financial turbulence." }
+                    { 
+                        max: 18, 
+                        title: "The Wealth Vault", 
+                        desc: "Keeping your money safe is your top priority. You build strong cash cushions.",
+                        interpretation: "Your score shows that protecting your money comes first. You avoid debt and keep cash handy, ensuring you stay safe during economic ups and downs.",
+                        takeaways: [
+                            { title: "Solid Protection", desc: "You have cash reserves to handle emergency bills with total ease." },
+                            { title: "Inflation Drag", desc: "Keeping too much cash on the sidelines can lower your buying power over time." }
+                        ],
+                        actionItems: [
+                            "Make sure your cash savings earn competitive interest rates to keep up with inflation.",
+                            "Consider investing a small percentage of surplus income into low-cost index funds for steady long-term growth."
+                        ],
+                        articles: [
+                            { title: "Personal Risk Tolerance & Investing", source: "Investopedia", url: "https://www.investopedia.com/terms/r/risktolerance.asp", desc: "A detailed breakdown of how risk tolerance shapes long-term wealth building." },
+                            { title: "Asset Allocation Principles", source: "Vanguard Insights", url: "https://www.investopedia.com/articles/basics/03/050203.asp", desc: "Understanding the balance between capital growth and downside preservation." }
+                        ]
+                    },
+                    { 
+                        max: 29, 
+                        title: "The Balanced Allocator", 
+                        desc: "You balance steady savings with smart investments for long-term wealth growth.",
+                        interpretation: "Your score reflects a healthy balance. You keep an emergency savings cushion while investing surplus funds to grow your wealth over time.",
+                        takeaways: [
+                            { title: "Steady Growth", desc: "You gain from market returns while protecting yourself against major losses." },
+                            { title: "Great Balance", desc: "Your approach builds lasting wealth without unnecessary daily stress." }
+                        ],
+                        actionItems: [
+                            "Rebalance your investment portfolio once a year to lock in gains and keep target asset ratios on track.",
+                            "Review personal health and disability insurance coverage to ensure your income remains protected."
+                        ],
+                        articles: [
+                            { title: "Personal Risk Tolerance & Investing", source: "Investopedia", url: "https://www.investopedia.com/terms/r/risktolerance.asp", desc: "How to calibrate risk tolerance with investment horizon." },
+                            { title: "Building a Resilient Portfolio", source: "Financial Planning Association", url: "https://www.investopedia.com/articles/basics/03/050203.asp", desc: "Frameworks for combining emergency reserves with active wealth growth." }
+                        ]
+                    },
+                    { 
+                        max: 40, 
+                        title: "The High-Stakes Bull", 
+                        desc: "You focus on high rewards and are comfortable with market ups and downs.",
+                        interpretation: "Your score shows you are willing to take big financial chances. You aim for high returns and can handle short-term losses in pursuit of larger gains.",
+                        takeaways: [
+                            { title: "High Upside Potential", desc: "Focused bets can build wealth quickly during good market conditions." },
+                            { title: "Risk of Big Losses", desc: "Heavy debt or concentrated investments leave you vulnerable if markets drop suddenly." }
+                        ],
+                        actionItems: [
+                            "Set aside a non-negotiable 6-month cash reserve before taking on new high-risk investment positions.",
+                            "Establish strict spending or investment caps to keep a single bad bet from hurting your baseline financial health."
+                        ],
+                        articles: [
+                            { title: "Managing Portfolio Volatility", source: "CFA Institute", url: "https://www.investopedia.com/articles/basics/03/050203.asp", desc: "Quantitative strategies for risk management during high market volatility." },
+                            { title: "Personal Risk Tolerance & Investing", source: "Investopedia", url: "https://www.investopedia.com/terms/r/risktolerance.asp", desc: "Recognizing behavioral biases when managing high-risk investment portfolios." }
+                        ]
+                    }
                 ]
             },
 
             social: {
                 id: "social",
                 name: "Social & Conformity Risk",
-                title: "Understanding Social & Conformity Risk",
+                title: "Understanding Social Risk",
                 icon: "🤝",
-                summary: "Social & Conformity Risk encompasses threats to your personal relationships, community standing, willingness to voice non-conforming views, and social support networks.",
+                summary: "Social risk looks at how comfortably you share different opinions, deal with peer pressure, and build strong friendships.",
                 about: {
-                    definition: "It is the possibility of isolation, reputational strain, or peer rejection resulting from challenging group consensus, making unpopular decisions, or experiencing environmental shifts.",
+                    definition: "It is the risk of feeling isolated or facing disagreement when you speak your mind, go against the crowd, or change social circles.",
                     examples: [
-                        "Expressing a contrarian perspective in an organization that enforces strict consensus.",
-                        "Relocating to a new city or remote job without actively building a local network.",
-                        "Over-focusing on work to the detriment of core personal relationships."
+                        "Sharing a different opinion in a team meeting where everyone usually agrees.",
+                        "Moving to a new city without taking time to meet local people or build a network.",
+                        "Spending all your energy on work and neglecting close relationships."
                     ],
                     keyIndicators: [
-                        "Feeling isolated or lacking trusted individuals to turn to during crises",
-                        "Hesitancy to speak up when your perspective contradicts group opinion",
-                        "High friction or unresolved conflict within key personal or work circles"
+                        "Having very few people to talk to during tough personal moments",
+                        "Staying quiet even when you strongly disagree with group decisions",
+                        "Frequent friction or distance in close friendships or work circles"
                     ]
                 },
                 impact: {
-                    immediate: "Feelings of loneliness, heightened stress during difficult moments, and fear of reputational fallout.",
-                    longTerm: "Erosion of long-term support systems, weaker professional opportunities driven by network gaps, and reduced emotional resilience.",
-                    reach: "Deeply impacts mental well-being, sense of belonging, and personal authenticity."
+                    immediate: "Feeling alone during stressful moments or worrying about what others think.",
+                    longTerm: "Losing touch with good friends over time and having a smaller support network.",
+                    reach: "Directly affects your happiness, feeling of belonging, and peace of mind."
                 },
                 questions: [
                     {
@@ -826,35 +965,86 @@
                     }
                 ],
                 results: [
-                    { max: 18, title: "The Diplomat", desc: "You value social harmony and safety, choosing your battles carefully to avoid unnecessary public friction." },
-                    { max: 29, title: "The Nuanced Voice", desc: "You are willing to express alternative views when necessary, but always maintain a polished social filter." },
-                    { max: 40, title: "The Social Alchemist", desc: "You embrace controversy and standing out, completely unfazed by public pushback or social friction." }
+                    { 
+                        max: 18, 
+                        title: "The Diplomat", 
+                        desc: "You value harmony and smooth relationships, avoiding unnecessary conflict.",
+                        interpretation: "Your score shows that keeping peace and good relations is important to you. You help teams run smoothly, but you might hold back your true thoughts to avoid disagreement.",
+                        takeaways: [
+                            { title: "High Social Trust", desc: "People enjoy working with you because you create a friendly, cooperative environment." },
+                            { title: "Staying Quiet", desc: "Avoiding conflict might keep your best ideas from being heard." }
+                        ],
+                        actionItems: [
+                            "Practice sharing alternative ideas in low-stakes discussions to get more comfortable speaking up.",
+                            "Write down 2 key personal values you care about so you know when to stand your ground."
+                        ],
+                        articles: [
+                            { title: "Understanding Groupthink", source: "Psychology Today", url: "https://www.psychologytoday.com/us/basics/groupthink", desc: "How social conformity shapes decision-making and how to avoid groupthink traps." },
+                            { title: "How to Speak Up When You Feel Intimidated", source: "Harvard Business Review", url: "https://hbr.org/2016/01/how-to-speak-up-when-you-feel-intimidated", desc: "Tactics for expressing contrarian views constructively without damaging relationships." }
+                        ]
+                    },
+                    { 
+                        max: 29, 
+                        title: "The Nuanced Voice", 
+                        desc: "You speak up when it matters, while keeping strong and respectful relationships.",
+                        interpretation: "Your score shows strong social awareness. You share new perspectives when needed, while remaining respectful and supportive of others.",
+                        takeaways: [
+                            { title: "Honest Communication", desc: "You share your views clearly without hurting your relationships." },
+                            { title: "Good Influence", desc: "You guide group conversations toward better outcomes without creating drama." }
+                        ],
+                        actionItems: [
+                            "Help team members frame constructive feedback in a positive, helpful way.",
+                            "Connect with people outside your usual social circle to hear different viewpoints."
+                        ],
+                        articles: [
+                            { title: "Understanding Groupthink", source: "Psychology Today", url: "https://www.psychologytoday.com/us/basics/groupthink", desc: "Strategies for balancing personal conviction with group harmony." },
+                            { title: "How to Speak Up When You Feel Intimidated", source: "Harvard Business Review", url: "https://hbr.org/2016/01/how-to-speak-up-when-you-feel-intimidated", desc: "Frameworks for delivering effective feedback in hierarchical teams." }
+                        ]
+                    },
+                    { 
+                        max: 40, 
+                        title: "The Social Alchemist", 
+                        desc: "You speak your mind openly and do not worry about pleasing the crowd.",
+                        interpretation: "Your score shows high independence. You hold firm to your beliefs, point out flaws in consensus, and follow your own path without needing outside approval.",
+                        takeaways: [
+                            { title: "Bold Independence", desc: "You are willing to challenge groupthink and bring fresh, original ideas." },
+                            { title: "Friction Risk", desc: "Always pushing against group opinion can create distance if empathy is missed." }
+                        ],
+                        actionItems: [
+                            "Pair your direct feedback with active listening so others feel valued and supported.",
+                            "Nurture a small group of trusted friends who give you honest, caring support."
+                        ],
+                        articles: [
+                            { title: "Understanding Groupthink", source: "Psychology Today", url: "https://www.psychologytoday.com/us/basics/groupthink", desc: "Examining the psychological costs and payoffs of high social non-conformity." },
+                            { title: "Preventing Groupthink", source: "Psychology Today", url: "https://www.psychologytoday.com/us/blog/credit-and-blame-at-work/201104/preventing-groupthink", desc: "How non-conformists can effectively lead organizations without fracturing teams." }
+                        ]
+                    }
                 ]
             },
 
             physical: {
                 id: "physical",
                 name: "Adventure & Physical Risk",
-                title: "Understanding Adventure & Physical Risk",
+                title: "Understanding Physical Risk",
                 icon: "🩺",
-                summary: "Adventure & Physical Risk involves factors that challenge your physical endurance, extreme sports limits, bodily recovery, and overall physical safety.",
+                summary: "Physical risk looks at how you treat your body, handle sleep and stress, and balance exertion with recovery.",
                 about: {
-                    definition: "It arises from physical endurance limits, high-intensity pursuits, lifestyle habits, poor ergonomics, or environmental exposure that increases vulnerability to injury or physical exhaustion.",
+                    definition: "It measures your vulnerability to injury, burnout, or fatigue from intense habits, poor sleep, or ignoring bodily pain.",
                     examples: [
-                        "Engaging in extreme sports or intense outdoor activities without adequate training.",
-                        "Chronic lack of quality sleep combined with high physical exertion and stress.",
-                        "Ignoring early physical symptoms or skipping routine health checkups."
+                        "Pushing through intense workouts or sports without proper warm-up or rest.",
+                        "Getting very little sleep while working long, demanding hours.",
+                        "Ignoring ongoing bodily pain or skipping regular health checkups."
                     ],
                     keyIndicators: [
-                        "Persistent fatigue, frequent minor injuries, or bodily strain",
-                        "Irregular sleep, poor nutrition, or pushing physical recovery boundaries",
-                        "High daily physical output without restorative recovery time"
+                        "Feeling constantly tired or dealing with frequent minor body aches",
+                        "Irregular sleep patterns and high caffeine or stress reliance",
+                        "Sitting or working long hours without physical movement or stretch breaks"
                     ]
                 },
                 impact: {
-                    immediate: "Low daily energy, acute physical injury, decreased focus, and higher susceptibility to illness.",
-                    longTerm: "Development of chronic wear-and-tear conditions, reduced long-term mobility, and physical burnout.",
-                    reach: "Limits your capacity across active hobbies, daily output, and long-term physical endurance."
+                    immediate: "Low daily energy, frequent headaches, and difficulty staying focused.",
+                    longTerm: "Long-term health issues, lower physical stamina, and physical burnout.",
+                    reach: "Limits how active, energetic, and healthy you feel every day."
                 },
                 questions: [
                     {
@@ -923,9 +1113,60 @@
                     }
                 ],
                 results: [
-                    { max: 18, title: "The Sanctuary Guardian", desc: "Physical health and preventative safety are your foundational baseline. You protect bodily longevity diligently." },
-                    { max: 29, title: "The Balanced Runner", desc: "You maintain reasonable health habits, taking calculated physical risks while keeping major burnout at bay." },
-                    { max: 40, title: "The High-Burn Rate Player", desc: "You push your physical boundary limits to the edge, prioritizing short-term output over restorative recovery." }
+                    { 
+                        max: 18, 
+                        title: "The Sanctuary Guardian", 
+                        desc: "You protect your body and energy carefully with good daily habits.",
+                        interpretation: "Your score shows that sleep, rest, and preventive care are priorities for you. You protect your physical energy and avoid over-exertion.",
+                        takeaways: [
+                            { title: "Long-Term Energy", desc: "Low risk of chronic fatigue or physical burnout." },
+                            { title: "Missed Fitness Growth", desc: "Avoiding physical challenges can limit your overall stamina over time." }
+                        ],
+                        actionItems: [
+                            "Add light strength or cardio exercise 2 to 3 times a week to build stamina safely.",
+                            "Plan fun outdoor activities to test and grow your physical fitness."
+                        ],
+                        articles: [
+                            { title: "Understanding the Stress Response", source: "Harvard Health", url: "https://www.health.harvard.edu/topics/mental-health/all", desc: "How physiological stress impacts long-term physical immunity and health." },
+                            { title: "Stress Management: Know Your Triggers", source: "Mayo Clinic", url: "https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-relievers/art-20047257", desc: "Evidence-based strategies for maintaining daily physical resilience." }
+                        ]
+                    },
+                    { 
+                        max: 29, 
+                        title: "The Balanced Runner", 
+                        desc: "You stay active and take on physical goals while making time for recovery.",
+                        interpretation: "Your score shows a healthy, active lifestyle. You challenge your body with workouts or hobbies while getting enough sleep and rest.",
+                        takeaways: [
+                            { title: "Great Daily Energy", desc: "You balance physical effort with proper rest." },
+                            { title: "Sustainable Habits", desc: "Very low chance of sudden burnout or severe fatigue." }
+                        ],
+                        actionItems: [
+                            "Pay attention to sleep quality and resting heart rate to notice early signs of tiredness.",
+                            "Take lighter recovery weeks during heavy workout routines to keep joints and muscles fresh."
+                        ],
+                        articles: [
+                            { title: "Understanding the Stress Response", source: "Harvard Health", url: "https://www.health.harvard.edu/topics/mental-health/all", desc: "The science of recovery, sleep, and physical adaptation." },
+                            { title: "Stress Management: Know Your Triggers", source: "Mayo Clinic", url: "https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-management/art-20044180", desc: "Proactive physical wellness routines for busy professionals." }
+                        ]
+                    },
+                    { 
+                        max: 40, 
+                        title: "The High-Burn Rate Player", 
+                        desc: "You push your energy to the limit and prioritize output over rest.",
+                        interpretation: "Your score shows you push past physical boundaries. You tolerate long hours and high stress, but you may be running on low sleep and recovery.",
+                        takeaways: [
+                            { title: "High Grit & Drive", desc: "You can push through tough deadlines and heavy physical demands." },
+                            { title: "Burnout Risk", desc: "Ignoring sleep debt and body aches can lead to physical fatigue or injury." }
+                        ],
+                        actionItems: [
+                            "Make 7 to 8 hours of sleep a non-negotiable rule during busy work weeks.",
+                            "Schedule regular stretch or rest breaks during long workdays to prevent stiffness and strain."
+                        ],
+                        articles: [
+                            { title: "Understanding the Stress Response", source: "Harvard Health", url: "https://www.health.harvard.edu/topics/mental-health/all", desc: "The biological consequences of prolonged physical stress and sleep debt." },
+                            { title: "Stress Management: Know Your Triggers", source: "Mayo Clinic", url: "https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-management/art-20044180", desc: "Recognizing physical warning signs before systemic burnout occurs." }
+                        ]
+                    }
                 ]
             }
         };
@@ -939,6 +1180,13 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderHistoryUI();
         });
+
+        function handleCardKey(e, quizKey) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openDetailView(quizKey);
+            }
+        }
 
         function getStoredHistory() {
             try {
@@ -982,7 +1230,7 @@
                         No saved quizzes yet. Complete any audit above to record your profile!
                     </div>`;
                 document.getElementById('completed-count').innerText = "0/4 Completed";
-                document.getElementById('composite-score').innerText = "0% Risk Appetite";
+                document.getElementById('composite-score').innerText = "0% Risk Score";
                 document.getElementById('composite-bar').style.width = '0%';
                 return;
             }
@@ -1001,12 +1249,23 @@
                 totalPossibleScore += item.maxScore;
 
                 let card = document.createElement('div');
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
                 card.className = "bg-slate-900/60 backdrop-blur-md border border-slate-800 p-4 rounded-xl space-y-2 cursor-pointer hover:border-indigo-500/50 transition-colors";
-                card.onclick = () => {
+                
+                const selectHistoryItem = () => {
                     currentQuizKey = k;
                     totalScore = item.score;
                     lastResultTitle = item.title;
                     showResults(true);
+                };
+
+                card.onclick = selectHistoryItem;
+                card.onkeydown = (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectHistoryItem();
+                    }
                 };
 
                 card.innerHTML = `
@@ -1017,7 +1276,7 @@
                     <div class="text-sm font-bold text-white">${item.title}</div>
                     <div class="flex justify-between items-center text-xs text-slate-400 border-t border-slate-800/60 pt-2">
                         <span>Score: ${item.score}/${item.maxScore}</span>
-                        <span class="text-indigo-300 font-semibold">${pct}% Propensity</span>
+                        <span class="text-indigo-300 font-semibold">${pct}% Score</span>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -1027,7 +1286,7 @@
             let totalCatCount = Object.keys(quizzes).length;
             document.getElementById('completed-count').innerText = `${keys.length}/${totalCatCount} Completed`;
             let compositePct = Math.round((totalAchievedScore / totalPossibleScore) * 100);
-            document.getElementById('composite-score').innerText = `${compositePct}% Risk Appetite`;
+            document.getElementById('composite-score').innerText = `${compositePct}% Risk Score`;
             document.getElementById('composite-bar').style.width = compositePct + '%';
         }
 
@@ -1141,11 +1400,47 @@
             let maxPossibleScore = quiz.questions.length * 5;
             let meterWidth = Math.min(Math.max((totalScore / maxPossibleScore) * 100, 15), 100);
 
-            document.getElementById('result-domain-label').innerText = quiz.name + " Archetype";
+            // Populate Card Information
+            document.getElementById('result-domain-label').innerText = quiz.name + " Profile";
             document.getElementById('result-title').innerText = matchedResult.title;
             document.getElementById('result-description').innerText = matchedResult.desc;
             document.getElementById('score-metric').innerText = `Score: ${totalScore}/${maxPossibleScore}`;
             document.getElementById('result-meter').style.width = meterWidth + '%';
+
+            // Populate "So What?" Breakdown
+            document.getElementById('result-interpretation').innerText = matchedResult.interpretation || matchedResult.desc;
+            
+            // Populate Key Takeaways
+            if (matchedResult.takeaways) {
+                document.getElementById('result-takeaways').innerHTML = matchedResult.takeaways.map(t => 
+                    `<li><strong class="text-white">${t.title}:</strong> ${t.desc}</li>`
+                ).join('');
+            }
+
+            // Populate Action Items
+            if (matchedResult.actionItems) {
+                document.getElementById('result-actions').innerHTML = matchedResult.actionItems.map((act, i) => 
+                    `<div class="p-3 bg-slate-950/60 border-l-4 border-indigo-500 rounded-r-xl text-slate-300">
+                        <strong class="text-white">Action ${i + 1}:</strong> ${act}
+                    </div>`
+                ).join('');
+            }
+
+            // Populate Curated Articles
+            if (matchedResult.articles) {
+                document.getElementById('result-articles').innerHTML = matchedResult.articles.map(art => `
+                    <a href="${art.url}" target="_blank" rel="noopener noreferrer" class="p-3.5 bg-slate-950/80 border border-slate-800 hover:border-indigo-500/80 rounded-xl transition-all group flex flex-col justify-between space-y-2">
+                        <div class="space-y-1">
+                            <div class="text-[10px] text-indigo-400 font-semibold uppercase tracking-wider">${art.source}</div>
+                            <div class="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors flex items-center justify-between">
+                                <span>${art.title}</span>
+                                <span class="text-slate-500 text-[10px] group-hover:translate-x-0.5 transition-transform">↗</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 leading-snug">${art.desc}</p>
+                        </div>
+                    </a>
+                `).join('');
+            }
 
             // Auto-save to localStorage if user completed a quiz
             if (!isViewingSaved) {
@@ -1153,7 +1448,7 @@
             }
         }
 
-        // Native HTML5 Canvas Renderer
+        // Native HTML5 Canvas Renderer with Dynamic Word-Wrapping
         function downloadCardNative() {
             let canvas = document.createElement('canvas');
             canvas.width = 600;
@@ -1181,16 +1476,40 @@
             ctx.font = 'bold 24px sans-serif';
             ctx.fillText(document.getElementById('result-title').innerText, 32, 88);
 
+            // Intelligent Canvas Text Wrap Function
+            function wrapCanvasText(ctxText, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+                const words = text.split(' ');
+                let line = '';
+                let lineCount = 0;
+
+                for (let n = 0; n < words.length; n++) {
+                    const testLine = line + words[n] + ' ';
+                    const metrics = ctxText.measureText(testLine);
+                    if (metrics.width > maxWidth && n > 0) {
+                        ctxText.fillText(line.trim(), x, y);
+                        line = words[n] + ' ';
+                        y += lineHeight;
+                        lineCount++;
+                        if (lineCount >= maxLines - 1) {
+                            let remaining = words.slice(n).join(' ');
+                            while (ctxText.measureText(remaining + '...').width > maxWidth && remaining.length > 0) {
+                                remaining = remaining.substring(0, remaining.length - 1);
+                            }
+                            ctxText.fillText(remaining.trim() + '...', x, y);
+                            return;
+                        }
+                    } else {
+                        line = testLine;
+                    }
+                }
+                ctxText.fillText(line.trim(), x, y);
+            }
+
             // Description Wrap
             ctx.fillStyle = '#cbd5e1';
             ctx.font = '13px sans-serif';
             let desc = document.getElementById('result-description').innerText;
-            if (desc.length > 70) {
-                ctx.fillText(desc.substring(0, 70), 32, 128);
-                ctx.fillText(desc.substring(70, 140) + '...', 32, 148);
-            } else {
-                ctx.fillText(desc, 32, 128);
-            }
+            wrapCanvasText(ctx, desc, 32, 128, 536, 20, 3);
 
             // Metric Text & Progress Bar Frame
             let scoreText = document.getElementById('score-metric').innerText;
@@ -1222,17 +1541,17 @@
         }
 
         function shareToLinkedIn() {
-            let text = encodeURIComponent(`Just took the PrismIQ assessment and unlocked my archetype: "${lastResultTitle}"! Check out your own behavioral risk DNA at prismiq.app`);
-            window.open(`https://www.linkedin.com/feed/?shareActive=true&text=${text}`, '_blank');
+            let shareUrl = encodeURIComponent('https://prismiq.app');
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`, '_blank');
         }
 
         function shareToTwitter() {
-            let text = encodeURIComponent(`Just discovered my risk archetype on PrismIQ: "${lastResultTitle}" ⚡ Take the quiz to see your behavioral profile:`);
+            let text = encodeURIComponent(`Just discovered my risk profile on PrismIQ: "${lastResultTitle}" ⚡ Take the quiz to see your behavioral profile:`);
             window.open(`https://twitter.com/intent/tweet?text=${text}&url=https://prismiq.app`, '_blank');
         }
 
         function copyShareText() {
-            let shareText = `I just took the PrismIQ behavioral audit and discovered my archetype is "${lastResultTitle}"! Test your risk-taking DNA at prismiq.app`;
+            let shareText = `I just took the PrismIQ behavioral audit and discovered my profile is "${lastResultTitle}"! Test your risk-taking DNA at prismiq.app`;
             navigator.clipboard.writeText(shareText).then(() => {
                 alert("Share text copied to clipboard!");
             });
