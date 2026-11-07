@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrismIQ | Behavior & Perception Hub</title>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3KKPNXJLD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-M3KKPNXJLD');
+    </script>
+
     <!-- Standard OpenGraph Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://prismiq.app/">
@@ -48,11 +58,49 @@
         <!-- Header / Navbar -->
         <header class="w-full max-w-3xl mx-auto p-6 flex justify-between items-center">
             <h1 class="text-xl font-bold tracking-tight text-indigo-400 cursor-pointer" onclick="goHome()">prism<span class="text-white">IQ</span></h1>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 flex-wrap justify-end">
+                <span id="account-status" class="hidden sm:inline text-[10px] text-slate-400 max-w-[130px] truncate">Guest mode</span>
+                <button id="account-button" onclick="toggleAuthPanel()" class="text-[10px] text-indigo-300 hover:text-white uppercase tracking-widest bg-indigo-600/20 border border-indigo-500/40 px-3 py-1.5 rounded-full transition-colors">Sign in / Create account</button>
                 <button onclick="clearHistory()" class="text-[10px] text-slate-500 hover:text-red-400 uppercase tracking-widest bg-slate-900/80 backdrop-blur border border-slate-800 px-2.5 py-1 rounded-full transition-colors">Reset History</button>
-                <span class="text-xs text-slate-500 uppercase tracking-widest bg-slate-900/80 backdrop-blur border border-slate-800 px-3 py-1 rounded-full">Zero Data Stored</span>
             </div>
         </header>
+
+        <!-- OPTIONAL ACCOUNT PANEL -->
+        <section id="auth-panel" class="hidden w-full max-w-3xl mx-auto px-6 pb-4">
+            <div class="bg-slate-900/95 backdrop-blur-md border border-indigo-500/30 p-5 sm:p-6 rounded-2xl space-y-4 shadow-xl">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Your PrismIQ account</h2>
+                        <p class="text-xs text-slate-400">Sign in to sync your quiz history across devices. Guest quizzes still work.</p>
+                    </div>
+                    <button onclick="toggleAuthPanel(false)" aria-label="Close account panel" class="text-slate-400 hover:text-white">✕</button>
+                </div>
+                <div id="auth-signed-out" class="space-y-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <button onclick="signInWithGoogle()" class="px-4 py-2.5 bg-white hover:bg-slate-100 text-slate-900 text-xs font-bold rounded-lg">Continue with Google</button>
+                        <button onclick="signInWithFacebook()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg">Continue with Facebook</button>
+                    </div>
+                    <div class="flex items-center gap-3 text-[10px] text-slate-500"><span class="h-px bg-slate-700 flex-1"></span>OR USE EMAIL<span class="h-px bg-slate-700 flex-1"></span></div>
+                    <form id="email-auth-form" class="grid grid-cols-1 sm:grid-cols-2 gap-2" onsubmit="submitEmailAuth(event)">
+                        <input id="auth-name" type="text" autocomplete="name" placeholder="Name (for new account)" class="sm:col-span-2 w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                        <input id="auth-email" type="email" autocomplete="email" required placeholder="Email address" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                        <input id="auth-password" type="password" autocomplete="current-password" minlength="6" required placeholder="Password (6+ characters)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                        <div class="sm:col-span-2 flex flex-wrap gap-2">
+                            <button id="email-submit-button" type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg">Sign in</button>
+                            <button type="button" onclick="setEmailAuthMode('register')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg">Create account</button>
+                            <button type="button" onclick="resetPassword()" class="px-3 py-2 text-indigo-300 hover:text-white text-xs">Forgot password?</button>
+                        </div>
+                    </form>
+                    <p id="auth-message" role="status" aria-live="polite" class="text-xs text-slate-400"></p>
+                </div>
+                <div id="auth-signed-in" class="hidden space-y-3">
+                    <p class="text-sm text-slate-200">Signed in as <strong id="auth-user-label" class="text-indigo-300"></strong></p>
+                    <p class="text-xs text-slate-400">Your PrismIQ results are saved to your private account.</p>
+                    <button onclick="signOutPrismIQ()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-lg">Sign out</button>
+                    <p id="auth-message-in" role="status" aria-live="polite" class="text-xs text-slate-400"></p>
+                </div>
+            </div>
+        </section>
 
         <!-- Main Content Container -->
         <main class="w-full max-w-2xl mx-auto px-6 flex-grow flex items-center justify-center py-6">
@@ -354,7 +402,7 @@
 
         <!-- Footer -->
         <footer class="w-full max-w-3xl mx-auto p-6 text-center text-xs text-slate-600">
-            PrismIQ • Saved locally in your browser cache. Zero server tracking.
+            PrismIQ • Guest results stay in this browser. Signed-in results sync securely to your account.
         </footer>
 
     </div>
@@ -411,6 +459,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Firebase compat SDKs: Auth + Cloud Firestore -->
+    <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore-compat.js"></script>
 
     <!-- JavaScript Application Logic -->
     <script>
@@ -1176,9 +1229,47 @@
         let totalScore = 0;
         let lastResultTitle = '';
 
-        // Initialize App & Load Saved Local Storage History
+        // PrismIQ Firebase Web App configuration.
+        // These client-side values identify the Firebase project; access is protected
+        // by Firebase Authentication and the Firestore security rules.
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXn2W6OHap-uxyqIJ8AJYB9BIOIc4IcYE",
+            authDomain: "prismiq-57182.firebaseapp.com",
+            projectId: "prismiq-57182",
+            storageBucket: "prismiq-57182.firebasestorage.app",
+            messagingSenderId: "483221455814",
+            appId: "1:483221455814:web:44673d55b553fff892a8c7",
+            measurementId: "G-CGS4V4H4BD"
+        };
+        let prismAuth = null;
+        let prismDb = null;
+        let prismUser = null;
+        let emailAuthMode = 'login';
+        const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
+
+        if (firebaseReady) {
+            try {
+                if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+                prismAuth = firebase.auth();
+                prismDb = firebase.firestore();
+                prismAuth.onAuthStateChanged(async (user) => {
+                    prismUser = user || null;
+                    updateAuthUI();
+                    if (user) await loadCloudHistory(user);
+                    else renderHistoryUI();
+                });
+            } catch (error) {
+                console.error('PrismIQ Firebase initialization failed:', error);
+                renderHistoryUI();
+            }
+        } else {
+            console.info('PrismIQ is in guest-only mode until Firebase config is added.');
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             renderHistoryUI();
+            updateAuthUI();
+            if (!firebaseReady) setAuthMessage('Add your Firebase web configuration to enable account sign-in and cloud sync. Guest quizzes are available now.');
         });
 
         function handleCardKey(e, quizKey) {
@@ -1188,32 +1279,198 @@
             }
         }
 
+        function historyStorageKey() {
+            return prismUser ? `prismiq_user_history_${prismUser.uid}` : 'prismiq_user_history';
+        }
+
         function getStoredHistory() {
+            try { return JSON.parse(localStorage.getItem(historyStorageKey())) || {}; }
+            catch(e) { return {}; }
+        }
+
+        function setStoredHistory(history) {
+            localStorage.setItem(historyStorageKey(), JSON.stringify(history || {}));
+        }
+
+        async function persistCloudHistory(history) {
+            if (!prismUser || !prismDb) return;
             try {
-                return JSON.parse(localStorage.getItem('prismiq_user_history')) || {};
-            } catch(e) {
-                return {};
+                await prismDb.collection('users').doc(prismUser.uid).set({
+                    results: history || {},
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+            } catch (error) {
+                console.error('Could not save PrismIQ cloud history:', error);
+                setAuthMessage('Your result is saved on this device, but cloud sync failed. Check your connection and Firestore rules.');
+            }
+        }
+
+        async function loadCloudHistory(user) {
+            try {
+                const ref = prismDb.collection('users').doc(user.uid);
+                const snapshot = await ref.get();
+                const cloudHistory = snapshot.exists ? (snapshot.data().results || {}) : {};
+                const accountCache = getStoredHistory();
+                let guestHistory = {};
+                try { guestHistory = JSON.parse(localStorage.getItem('prismiq_user_history')) || {}; } catch (e) {}
+                // Merge this account's cache and guest results. Other users' caches are never shared.
+                const merged = { ...cloudHistory, ...guestHistory, ...accountCache };
+                setStoredHistory(merged);
+                await persistCloudHistory(merged);
+                localStorage.removeItem('prismiq_user_history');
+                renderHistoryUI();
+            } catch (error) {
+                console.error('Could not load PrismIQ cloud history:', error);
+                setAuthMessage('Signed in, but your cloud history could not be loaded. Check Firestore setup and rules.');
+                renderHistoryUI();
             }
         }
 
         function saveQuizToHistory(quizKey, score, title, desc, maxScore) {
-            let history = getStoredHistory();
+            const history = getStoredHistory();
             history[quizKey] = {
-                score: score,
-                maxScore: maxScore,
-                title: title,
-                desc: desc,
+                score, maxScore, title, desc,
                 timestamp: new Date().toLocaleDateString()
             };
-            localStorage.setItem('prismiq_user_history', JSON.stringify(history));
+            setStoredHistory(history);
             renderHistoryUI();
+            if (prismUser) persistCloudHistory(history);
         }
 
-        function clearHistory() {
-            if(confirm("Clear all your saved quiz results from this browser?")) {
-                localStorage.removeItem('prismiq_user_history');
-                renderHistoryUI();
+        async function clearHistory() {
+            if (!confirm('Clear all your saved quiz results? This clears the current browser history and, if signed in, your cloud history too.')) return;
+            setStoredHistory({});
+            renderHistoryUI();
+            if (prismUser && prismDb) {
+                try {
+                    await prismDb.collection('users').doc(prismUser.uid).set({
+                        results: {}, updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
+                } catch (error) {
+                    console.error('Could not clear cloud history:', error);
+                    setAuthMessage('Browser history cleared, but cloud history could not be cleared.');
+                }
             }
+        }
+
+        function toggleAuthPanel(force) {
+            const panel = document.getElementById('auth-panel');
+            if (!panel) return;
+            const shouldOpen = typeof force === 'boolean' ? force : panel.classList.contains('hidden');
+            panel.classList.toggle('hidden', !shouldOpen);
+            if (shouldOpen) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function setAuthMessage(message, signedIn = false) {
+            const el = document.getElementById(signedIn ? 'auth-message-in' : 'auth-message');
+            if (el) el.textContent = message || '';
+        }
+
+        function updateAuthUI() {
+            const signedIn = !!prismUser;
+            document.getElementById('auth-signed-out')?.classList.toggle('hidden', signedIn);
+            document.getElementById('auth-signed-in')?.classList.toggle('hidden', !signedIn);
+            const button = document.getElementById('account-button');
+            const status = document.getElementById('account-status');
+            if (button) button.textContent = signedIn ? 'Account / Sign out' : 'Sign in / Create account';
+            if (status) status.textContent = signedIn ? (prismUser.displayName || prismUser.email || 'Signed in') : 'Guest mode';
+            const label = document.getElementById('auth-user-label');
+            if (label && signedIn) label.textContent = prismUser.email || prismUser.displayName || 'PrismIQ user';
+        }
+
+        function requireFirebase() {
+            if (!firebaseReady || !prismAuth) {
+                setAuthMessage('Authentication is not configured yet. Add your Firebase web config in Index.html first.');
+                return false;
+            }
+            return true;
+        }
+
+        function setEmailAuthMode(mode) {
+            emailAuthMode = mode;
+            const button = document.getElementById('email-submit-button');
+            const name = document.getElementById('auth-name');
+            if (button) button.textContent = mode === 'register' ? 'Create account' : 'Sign in';
+            if (name) {
+                name.classList.toggle('hidden', mode !== 'register');
+                name.required = mode === 'register';
+            }
+            const password = document.getElementById('auth-password');
+            if (password) password.autocomplete = mode === 'register' ? 'new-password' : 'current-password';
+            setAuthMessage(mode === 'register' ? 'Create an account with your name, email and password.' : 'Sign in with your email and password.');
+        }
+
+        async function submitEmailAuth(event) {
+            event.preventDefault();
+            if (!requireFirebase()) return;
+            const email = document.getElementById('auth-email').value.trim();
+            const password = document.getElementById('auth-password').value;
+            const name = document.getElementById('auth-name').value.trim();
+            try {
+                setAuthMessage('Please wait…');
+                if (emailAuthMode === 'register') {
+                    const credential = await prismAuth.createUserWithEmailAndPassword(email, password);
+                    if (name) await credential.user.updateProfile({ displayName: name });
+                    try { await credential.user.sendEmailVerification(); } catch (e) { console.warn('Verification email could not be sent:', e); }
+                    setAuthMessage('Account created. Check your inbox for an email verification link.');
+                } else {
+                    await prismAuth.signInWithEmailAndPassword(email, password);
+                    setAuthMessage('Signed in successfully.', true);
+                }
+            } catch (error) {
+                setAuthMessage(authErrorMessage(error));
+            }
+        }
+
+        async function signInWithGoogle() {
+            if (!requireFirebase()) return;
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await prismAuth.signInWithPopup(provider);
+                toggleAuthPanel(false);
+            } catch (error) { setAuthMessage(authErrorMessage(error)); }
+        }
+
+        async function signInWithFacebook() {
+            if (!requireFirebase()) return;
+            try {
+                const provider = new firebase.auth.FacebookAuthProvider();
+                provider.addScope('email');
+                await prismAuth.signInWithPopup(provider);
+                toggleAuthPanel(false);
+            } catch (error) { setAuthMessage(authErrorMessage(error)); }
+        }
+
+        async function resetPassword() {
+            if (!requireFirebase()) return;
+            const email = document.getElementById('auth-email').value.trim();
+            if (!email) { setAuthMessage('Enter your email address first.'); return; }
+            try {
+                await prismAuth.sendPasswordResetEmail(email);
+                setAuthMessage('If an account exists for that email, a password reset message has been sent.');
+            } catch (error) { setAuthMessage(authErrorMessage(error)); }
+        }
+
+        async function signOutPrismIQ() {
+            if (!requireFirebase()) return;
+            try { await prismAuth.signOut(); setAuthMessage('You are signed out.', true); }
+            catch (error) { setAuthMessage(authErrorMessage(error), true); }
+        }
+
+        function authErrorMessage(error) {
+            const messages = {
+                'auth/invalid-email': 'That email address is not valid.',
+                'auth/user-disabled': 'This account has been disabled.',
+                'auth/user-not-found': 'No account was found. Create an account or check your email.',
+                'auth/wrong-password': 'The password is incorrect.',
+                'auth/invalid-credential': 'Email or password is incorrect.',
+                'auth/email-already-in-use': 'An account already exists with this email. Try signing in.',
+                'auth/weak-password': 'Choose a stronger password with at least 6 characters.',
+                'auth/popup-closed-by-user': 'The sign-in window was closed before completing sign-in.',
+                'auth/account-exists-with-different-credential': 'This email already uses another sign-in method. Sign in with that method first.',
+                'auth/unauthorized-domain': 'This website domain is not authorized in Firebase Authentication.'
+            };
+            return messages[error.code] || error.message || 'Sign-in failed. Please try again.';
         }
 
         function renderHistoryUI() {
