@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrismIQ | Behavior & Perception Hub</title>
+    <title>Risk Profile Quizzes for Career, Money &amp; More | PrismIQ</title>
+    <meta name="description" content="Take short self-reflection quizzes about career, financial, social, and physical risk. Explore each profile and learn what your results can—and can’t—tell you.">
+    <link rel="canonical" href="https://www.prism-iq.in/">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-M3KKPNXJLD"></script>
@@ -18,8 +20,9 @@
     <!-- Standard OpenGraph Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.prism-iq.in/">
-    <meta property="og:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta property="og:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
+    <meta property="og:site_name" content="PrismIQ">
+    <meta property="og:title" content="Risk Profile Quizzes for Career, Money & More | PrismIQ">
+    <meta property="og:description" content="Take short self-reflection quizzes about career, financial, social, and physical risk. Explore each profile and learn what your results can—and can’t—tell you.">
     <meta property="og:image" content="https://www.prism-iq.in/og-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -27,8 +30,8 @@
     <!-- Twitter / X Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.prism-iq.in/">
-    <meta name="twitter:title" content="PrismIQ | Behavioral & Perception Quizzes">
-    <meta name="twitter:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
+    <meta name="twitter:title" content="Risk Profile Quizzes for Career, Money & More | PrismIQ">
+    <meta name="twitter:description" content="Take short self-reflection quizzes about career, financial, social, and physical risk. Explore each profile and learn what your results can—and can’t—tell you.">
     <meta name="twitter:image" content="https://www.prism-iq.in/og-preview.png">
 
     <!-- Tailwind CSS -->
@@ -57,7 +60,7 @@
         
         <!-- Header / Navbar -->
         <header class="w-full max-w-3xl mx-auto p-6 flex justify-between items-center">
-            <h1 class="text-xl font-bold tracking-tight text-indigo-400 cursor-pointer" onclick="goHome()">prism<span class="text-white">IQ</span></h1>
+            <a href="/" class="text-xl font-bold tracking-tight text-indigo-400 cursor-pointer">prism<span class="text-white">IQ</span></a>
             <div class="flex items-center gap-2 flex-wrap justify-end">
                 <span id="account-status" class="hidden sm:inline text-[10px] text-slate-400 max-w-[130px] truncate">Guest mode</span>
                 <button id="account-button" onclick="toggleAuthPanel()" class="text-[10px] text-indigo-300 hover:text-white uppercase tracking-widest bg-indigo-600/20 border border-indigo-500/40 px-3 py-1.5 rounded-full transition-colors">Sign in / Create account</button>
@@ -110,7 +113,7 @@
                     <div class="inline-block p-3 bg-indigo-500/10 border border-indigo-500/20 backdrop-blur-sm rounded-2xl text-indigo-400 text-sm">
                         🧠 Behavioral & Perception Hub
                     </div>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Choose Your Prism Audit</h2>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Explore Your Risk Profile Across Four Areas of Life</h1>
                     
                     <!-- CONCEPT & BENEFIT BRIEF NOTE -->
                     <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800/80 p-4 rounded-2xl text-xs sm:text-sm text-slate-300 max-w-lg mx-auto text-left leading-relaxed space-y-2">
@@ -122,40 +125,52 @@
 
                 <!-- Quiz Cards Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div role="button" tabindex="0" onclick="openDetailView('career')" onkeydown="handleCardKey(event, 'career')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-indigo-500/80 p-5 rounded-2xl transition-all hover:bg-slate-900/90 group space-y-3">
+                    <button type="button" onclick="openDetailView('career')" class="block w-full text-left space-y-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded-xl">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">💼</span>
                             <span class="text-xs text-indigo-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Career & Strategic Risk</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">See how open you are to career changes, learning new skills, and job stability.</p>
+                    </button>
+                    <a class="inline-block text-xs text-indigo-300 underline underline-offset-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded" href="/career-risk-quiz/">Learn more about career risk →</a>
                     </div>
 
-                    <div role="button" tabindex="0" onclick="openDetailView('financial')" onkeydown="handleCardKey(event, 'financial')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-emerald-500/80 p-5 rounded-2xl transition-all hover:bg-slate-900/90 group space-y-3">
+                    <button type="button" onclick="openDetailView('financial')" class="block w-full text-left space-y-3 focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-xl">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">💳</span>
                             <span class="text-xs text-emerald-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Financial & Wealth Risk</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">Check how you manage savings, investments, debt, and emergency backup plans.</p>
+                    </button>
+                    <a class="inline-block text-xs text-emerald-300 underline underline-offset-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded" href="/financial-risk-quiz/">Learn more about financial risk →</a>
                     </div>
 
-                    <div role="button" tabindex="0" onclick="openDetailView('social')" onkeydown="handleCardKey(event, 'social')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-purple-500/80 p-5 rounded-2xl transition-all hover:bg-slate-900/90 group space-y-3">
+                    <button type="button" onclick="openDetailView('social')" class="block w-full text-left space-y-3 focus:outline-none focus:ring-2 focus:ring-purple-400 rounded-xl">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">🤝</span>
                             <span class="text-xs text-purple-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Social & Conformity Risk</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">Learn how comfortably you handle social pressure, express views, and build relationships.</p>
+                    </button>
+                    <a class="inline-block text-xs text-purple-300 underline underline-offset-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-400 rounded" href="/social-risk-quiz/">Learn more about social risk →</a>
                     </div>
 
-                    <div role="button" tabindex="0" onclick="openDetailView('physical')" onkeydown="handleCardKey(event, 'physical')" class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl cursor-pointer transition-all hover:bg-slate-900/90 group space-y-3">
+                    <div class="bg-slate-900/60 backdrop-blur-md border border-slate-800 hover:border-amber-500/80 p-5 rounded-2xl transition-all hover:bg-slate-900/90 group space-y-3">
+                    <button type="button" onclick="openDetailView('physical')" class="block w-full text-left space-y-3 focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-xl">
                         <div class="flex justify-between items-center">
                             <span class="text-2xl">🩺</span>
                             <span class="text-xs text-amber-400 font-medium group-hover:translate-x-1 transition-transform">Learn & Audit →</span>
                         </div>
                         <h3 class="text-lg font-bold text-white">Adventure & Physical Risk</h3>
                         <p class="text-xs text-slate-400 leading-relaxed">Examine your sleep habits, physical limits, health routines, and energy levels.</p>
+                    </button>
+                    <a class="inline-block text-xs text-amber-300 underline underline-offset-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-amber-400 rounded" href="/physical-risk-quiz/">Learn more about physical risk →</a>
                     </div>
                 </div>
 
@@ -214,6 +229,8 @@
                         </div>
                     </div>
                 </div>
+
+                <p class="text-center text-xs text-slate-400">Want context before you begin? <a class="text-indigo-300 underline underline-offset-2 hover:text-white" href="/about/scoring/">Read how PrismIQ scoring works and what results can—and can’t—tell you.</a></p>
             </div>
 
             <!-- VIEW 2: SECONDARY DETAIL SCREEN -->
@@ -1269,6 +1286,12 @@
             renderHistoryUI();
             updateAuthUI();
             if (!firebaseReady) setAuthMessage('Add your Firebase web configuration to enable account sign-in and cloud sync. Guest quizzes are available now.');
+
+            // Category landing pages can open the existing quiz without duplicating quiz logic.
+            const requestedQuiz = new URLSearchParams(window.location.search).get('quiz');
+            if (requestedQuiz && Object.prototype.hasOwnProperty.call(quizzes, requestedQuiz)) {
+                startQuiz(requestedQuiz);
+            }
         });
 
         function handleCardKey(e, quizKey) {
@@ -1801,7 +1824,7 @@
         }
 
         function copyShareText() {
-            let shareText = `I just took the PrismIQ behavioral audit and discovered my profile is "${lastResultTitle}"! Test your risk-taking DNA at www.prism-iq.in`;
+            let shareText = `I just took the PrismIQ behavioral audit and discovered my profile is "${lastResultTitle}"! Test your risk-taking profile at https://www.prism-iq.in`;
             navigator.clipboard.writeText(shareText).then(() => {
                 alert("Share text copied to clipboard!");
             });
