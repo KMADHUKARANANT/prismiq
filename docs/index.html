@@ -17,19 +17,19 @@
 
     <!-- Standard OpenGraph Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://prismiq.app/">
+    <meta property="og:url" content="https://www.prism-iq.in/">
     <meta property="og:title" content="PrismIQ | Behavioral & Perception Quizzes">
     <meta property="og:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
-    <meta property="og:image" content="https://prismiq.app/og-preview.png">
+    <meta property="og:image" content="https://www.prism-iq.in/og-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter / X Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://prismiq.app/">
+    <meta name="twitter:url" content="https://www.prism-iq.in/">
     <meta name="twitter:title" content="PrismIQ | Behavioral & Perception Quizzes">
     <meta name="twitter:description" content="Discover your personal comfort zone with risk across career, financial, social, and physical areas of life.">
-    <meta name="twitter:image" content="https://prismiq.app/og-preview.png">
+    <meta name="twitter:image" content="https://www.prism-iq.in/og-preview.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -86,7 +86,7 @@
                         <input id="auth-password" type="password" autocomplete="current-password" minlength="6" required placeholder="Password (6+ characters)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
                         <div class="sm:col-span-2 flex flex-wrap gap-2">
                             <button id="email-submit-button" type="submit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg">Sign in</button>
-                            <button type="button" onclick="setEmailAuthMode('register')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg">Create account</button>
+                            <button id="email-mode-toggle" type="button" onclick="setEmailAuthMode(emailAuthMode === 'register' ? 'login' : 'register')" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg">Create account</button>
                             <button type="button" onclick="resetPassword()" class="px-3 py-2 text-indigo-300 hover:text-white text-xs">Forgot password?</button>
                         </div>
                     </form>
@@ -332,7 +332,7 @@
                     </div>
 
                     <div class="text-[10px] text-slate-500 text-right pt-2">
-                        Verified on prismiq.app
+                        Verified on www.prism-iq.in
                     </div>
                 </div>
 
@@ -1390,6 +1390,8 @@
             const button = document.getElementById('email-submit-button');
             const name = document.getElementById('auth-name');
             if (button) button.textContent = mode === 'register' ? 'Create account' : 'Sign in';
+            const modeToggle = document.getElementById('email-mode-toggle');
+            if (modeToggle) modeToggle.textContent = mode === 'register' ? 'Already have an account? Sign in' : 'Create account';
             if (name) {
                 name.classList.toggle('hidden', mode !== 'register');
                 name.required = mode === 'register';
@@ -1779,7 +1781,7 @@
             // Branding Footer
             ctx.fillStyle = '#64748b';
             ctx.font = '11px sans-serif';
-            ctx.fillText('Verified on prismiq.app', 440, 320);
+            ctx.fillText('Verified on www.prism-iq.in', 440, 320);
 
             // Auto-Trigger Download
             let link = document.createElement('a');
@@ -1789,17 +1791,17 @@
         }
 
         function shareToLinkedIn() {
-            let shareUrl = encodeURIComponent('https://prismiq.app');
+            let shareUrl = encodeURIComponent('https://www.prism-iq.in');
             window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`, '_blank');
         }
 
         function shareToTwitter() {
             let text = encodeURIComponent(`Just discovered my risk profile on PrismIQ: "${lastResultTitle}" ⚡ Take the quiz to see your behavioral profile:`);
-            window.open(`https://twitter.com/intent/tweet?text=${text}&url=https://prismiq.app`, '_blank');
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=https://www.prism-iq.in`, '_blank');
         }
 
         function copyShareText() {
-            let shareText = `I just took the PrismIQ behavioral audit and discovered my profile is "${lastResultTitle}"! Test your risk-taking DNA at prismiq.app`;
+            let shareText = `I just took the PrismIQ behavioral audit and discovered my profile is "${lastResultTitle}"! Test your risk-taking DNA at www.prism-iq.in`;
             navigator.clipboard.writeText(shareText).then(() => {
                 alert("Share text copied to clipboard!");
             });
